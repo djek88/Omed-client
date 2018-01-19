@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+  <div class="col-8 text-center">
+    <h2>Étape 2/3</h2>
+    <p>Vous y êtes presque..</p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-10 col-lg-7">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <input id="birthday" type="date" class="form-control" placeholder="Birthdate"
+            min="{{minDate}}" max="{{maxDate}}" formControlName="birthday">
+          <label for="birthday"><i class="fa fa-birthday-cake" aria-hidden="true"></i></label>
+        </div>
+        <div class="form-group col-md-6">
+          <select id="sex" class="form-control" formControlName="sex">
+            <option value="" selected disabled>Sex</option>
+            <option *ngFor="let gender of genderOpts" [value]="gender">{{gender | capitalizeFirst}}</option>
+          </select>
+          <label for="sex"><i class="fa fa-venus-mars" aria-hidden="true"></i></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <select id="city" class="form-control" formControlName="city">
+            <option value="" selected disabled>Hometown</option>
+            <option *ngFor="let city of cityOpts" [value]="city.id">{{city.name | capitalizeFirst}}</option>
+          </select>
+          <label for="city"><i class="fa fa-home" aria-hidden="true"></i></label>
+        </div>
+        <div class="form-group col-md-6">
+          <select id="degree" class="form-control" formControlName="degree">
+            <option value="" selected disabled>Degree</option>
+            <optgroup *ngFor="let group of degreeGroups" [label]="group.name">
+              <option *ngFor="let degree of group.degrees" [value]="degree.value">{{degree.name}}</option>
+            </optgroup>
+          </select>
+          <label for="degree"><i class="fa fa-graduation-cap" aria-hidden="true"></i></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <select id="university" class="form-control" formControlName="university">
+            <option value="" selected disabled>University</option>
+            <option *ngFor="let university of universityOpts" [value]="university.id">{{university.name | capitalizeFirst}}</option>
+          </select>
+          <label for="university"><i class="fa fa-university" aria-hidden="true"></i></label>
+        </div>
+        <div class="form-group col-md-6">
+          <select id="hospital" class="form-control" formControlName="hospital" #hospitalCtrl>
+            <option value="" selected disabled>Hospital</option>
+            <option *ngFor="let hospital of hospitalOpts" [value]="hospital.id">{{hospital.name | capitalizeFirst}}</option>
+          </select>
+          <label for="hospital"><i class="fa fa-hospital-o" aria-hidden="true"></i></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <select id="specialty" class="form-control" formControlName="specialty">
+            <option value="" selected disabled>Specialty</option>
+            <option *ngFor="let specialty of specialtyOpts" [value]="specialty.id">{{specialty.name | capitalizeFirst}}</option>
+          </select>
+          <label for="specialty"><i class="fa fa-stethoscope" aria-hidden="true"></i></label>
+        </div>
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-primary btn-block submit-btn" [disabled]="formSubmitted">Next</button>
+        </div>
+      </div>
+      
+      <!-- <div class="row justify-content-end">
+        <div class="form-group col-md-6">
+          <select id="military" class="form-control" formControlName="military">
+            <option value="false">Civil</option>
+            <option value="true">Military</option>
+          </select>
+          <label for="military"><i class="fa fa-fighter-jet" aria-hidden="true"></i></label>
+        </div>
+      </div> -->
+    </form>
+  </div>
+</div>
