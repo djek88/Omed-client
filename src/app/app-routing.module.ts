@@ -6,6 +6,10 @@ const routes: Routes = [
     path: 'registration',
     loadChildren: './registration/registration.module#RegistrationModule'
   },
+  {
+    path: 'admin',
+    loadChildren: './admin/admin.module#AdminModule',
+  },
   { path: '', redirectTo: 'registration', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];
