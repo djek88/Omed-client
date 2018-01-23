@@ -15,18 +15,19 @@ import {
 
 declare var Object: any;
 export interface MedUserInterface {
-  "approved"?: boolean;
-  "moreProof"?: boolean;
+  "type": string;
+  "area": string;
   "firstName": string;
   "lastName": string;
   "phones": Array<any>;
-  "birthday": Date;
-  "area"?: string;
-  "type"?: string;
+  "approved"?: boolean;
+  "moreProof"?: boolean;
+  "sex"?: string;
+  "birthday"?: Date;
   "degree"?: string;
   "military"?: boolean;
   "private"?: boolean;
-  "medDocuments": Array<any>;
+  "medDocuments"?: Array<any>;
   "photo"?: string;
   "maritalStatus"?: string;
   "id"?: any;
@@ -52,14 +53,15 @@ export interface MedUserInterface {
 }
 
 export class MedUser implements MedUserInterface {
-  "approved": boolean;
-  "moreProof": boolean;
+  "type": string;
+  "area": string;
   "firstName": string;
   "lastName": string;
   "phones": Array<any>;
+  "approved": boolean;
+  "moreProof": boolean;
+  "sex": string;
   "birthday": Date;
-  "area": string;
-  "type": string;
   "degree": string;
   "military": boolean;
   "private": boolean;
@@ -119,15 +121,13 @@ export class MedUser implements MedUserInterface {
       path: 'MedUsers',
       idName: 'id',
       properties: {
-        "approved": {
-          name: 'approved',
-          type: 'boolean',
-          default: false
+        "type": {
+          name: 'type',
+          type: 'string'
         },
-        "moreProof": {
-          name: 'moreProof',
-          type: 'boolean',
-          default: false
+        "area": {
+          name: 'area',
+          type: 'string'
         },
         "firstName": {
           name: 'firstName',
@@ -141,19 +141,24 @@ export class MedUser implements MedUserInterface {
           name: 'phones',
           type: 'Array&lt;any&gt;'
         },
+        "approved": {
+          name: 'approved',
+          type: 'boolean',
+          default: false
+        },
+        "moreProof": {
+          name: 'moreProof',
+          type: 'boolean',
+          default: false
+        },
+        "sex": {
+          name: 'sex',
+          type: 'string',
+          default: 'male'
+        },
         "birthday": {
           name: 'birthday',
           type: 'Date'
-        },
-        "area": {
-          name: 'area',
-          type: 'string',
-          default: 'medicine'
-        },
-        "type": {
-          name: 'type',
-          type: 'string',
-          default: 'student'
         },
         "degree": {
           name: 'degree',
@@ -172,7 +177,8 @@ export class MedUser implements MedUserInterface {
         },
         "medDocuments": {
           name: 'medDocuments',
-          type: 'Array&lt;any&gt;'
+          type: 'Array&lt;any&gt;',
+          default: <any>[]
         },
         "photo": {
           name: 'photo',

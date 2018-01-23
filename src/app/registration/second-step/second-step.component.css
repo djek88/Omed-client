@@ -1,0 +1,83 @@
+h2 {
+  font-weight: 300;
+  font-size: 30px;
+}
+
+p {
+  color: #6a889a;
+  font-size: 14px;
+}
+
+.form-group .form-control,
+.input-group .form-control {
+  position: relative;
+  padding-left: 44px;
+  height: 53.5px;
+  font-size: 14px;
+  border: 1px solid #a7b9c459;
+  border-radius: 2px;
+  font-weight: 600;
+  -webkit-appearance: none;
+}
+
+.form-group label {
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  left: 31px;
+  width: 17px;
+  color: #b1c1d3;
+}
+
+.submit {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #2b9cf2;
+  padding: 15px 18.75px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 20px;
+  border: 1px solid transparent;
+}
+
+.submit-btn:before {
+  content: '';
+  position: absolute;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  width: 30%;
+  height: 500%;
+  background: rgba(255,255,255,0.1);
+  z-index: 1;
+  right: 0;
+  top: 0;
+  margin: -5px 0 0 -5px;
+  -webkit-transform-origin: 0 0;
+  -webkit-transform: rotate(-20deg);
+  -moz-transform-origin: 0 0;
+  -moz-transform: rotate(-20deg);
+  -ms-transform-origin: 0 0;
+  -ms-transform: rotate(-20deg);
+  transform-origin: 0 0;
+  transform: rotate(-20deg);
+}
+
+.submit-btn:hover:before {
+  width: 80%;
+}
+
+.ng-touched.ng-valid + label,
+.ng-dirty.ng-valid + label {
+  color: #2c9cf2;
+}
+
+.ng-touched.ng-invalid + label,
+.ng-dirty.ng-invalid + label {
+  color: #FF2A63;
+}

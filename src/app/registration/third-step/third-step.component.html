@@ -1,0 +1,35 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-8 text-center">
+    <div class="scan"><img class="fingerprint" src="/assets/icons/fingerprint.svg"><span></span></div>
+    <h2>Confirmez votre identité!</h2>
+    <p>..dans le but de garder Omed une plateforme sûre, strictement réservée aux médecins.</p>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center">
+  <div class="col-md-10 col-lg-7">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row d-flex justify-content-center">
+        <div class="form-group col-md-11">
+          <div class="upload-area" (click)="file.click();">
+            <img src="/assets/icons/stid.svg" style="width: 60px;">
+            <div class="det">
+              Click here to upload a picture of your
+              <ng-container [ngSwitch]="userType">
+                <strong *ngSwitchCase="userTypes[0]">student card</strong>
+                <strong *ngSwitchCase="userTypes[1]">badge/diploma/stamp</strong>
+                <strong *ngSwitchCase="userTypes[2]">diploma/stamp</strong>
+              </ng-container>
+            </div>
+            <input type="file" class="form-control-file" (change)="onFileChange($event)" #file>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-primary btn-block submit-btn" [disabled]="signUpForm.invalid">Validate</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
