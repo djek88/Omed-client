@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { MedUser, AccountApi, LoopBackAuth } from '../../shared/sdk';
 
 @Injectable()
-export class SecondStepMedUserResolver implements Resolve<MedUser>{
+export class MedUserByAuthResolver implements Resolve<MedUser>{
   constructor(
     private accountApi: AccountApi,
     private auth: LoopBackAuth) { }

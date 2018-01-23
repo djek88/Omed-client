@@ -21,5 +21,7 @@ export * from './Audience';
 export * from './Pool';
 export * from './Answer';
 export * from './Vote';
+export * from './MedUserMedDocument';
+export * from './Additional';
 export * from './BaseModels';
 export * from './FireLoopRef';

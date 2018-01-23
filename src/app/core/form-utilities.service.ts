@@ -4,6 +4,12 @@ import { Injectable } from '@angular/core';
 export class FormUtilitiesService {
   constructor() { }
 
+  readFileAsDataUrl(file, cb) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => cb(fileReader.result);
+  }
+
   dateToString(yearOffset?: number, monthOffset?: number, dayOffset?: number): string {
     yearOffset = yearOffset || 0;
     monthOffset = monthOffset || 0;

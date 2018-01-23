@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -6,6 +7,8 @@ import { Account, MedUser,
   AccountApi, MedUserApi } from '../../shared/sdk';
 
 import 'rxjs/add/operator/mergeMap';
+
+import { environment } from '../../../environments/environment';
 
 export interface Degree {
   name: string;
@@ -67,6 +70,7 @@ export class SignUpService {
   ];
 
   constructor(
+    private http: Http,
     private accountApi: AccountApi,
     private medUserApi: MedUserApi) { }
 
@@ -77,6 +81,17 @@ export class SignUpService {
 
   registrateSecondStep(id, data): Observable<any> {
     return this.medUserApi.patchAttributes(id, data);
+  }
+
+  registrateThirdStep(id, data): Observable<any> {
+    const url = `${environment.apiBaseUrl}/${environment.apiVersion}/MedUsers/${id}/upload-med-document`;
+    const headers = new Headers();
+    this.medUserApi.authenticate(url, headers);
+
+    const fd = new FormData();
+    fd.append('file', data.file);
+
+    return this.http.post(url, fd, { headers });
   }
 
   getTypes() {

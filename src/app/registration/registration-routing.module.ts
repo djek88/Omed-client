@@ -6,8 +6,9 @@ import { FirstStepComponent }    from './first-step/first-step.component';
 import { SecondStepComponent }   from './second-step/second-step.component';
 import { ThirdStepComponent }    from './third-step/third-step.component';
 
-import { SecondStepListsResolver }   from './second-step/second-step-lists-resolver.service';
-import { SecondStepMedUserResolver } from './second-step/second-step-med-user-resolver.service';
+import { SecondStepListsResolver }               from './second-step/second-step-lists-resolver.service';
+import { MedUserByAuthResolver }                 from './shared/med-user-by-auth-resolver.service';
+import { MedDocumentConfigurationsResolver }     from './third-step/med-document-configurations-resolver.service';
 
 const routes: Routes = [
   {
@@ -19,11 +20,18 @@ const routes: Routes = [
         path: 'step-2',
         component: SecondStepComponent,
         resolve: {
-          medUser: SecondStepMedUserResolver,
+          medUser: MedUserByAuthResolver,
           lists: SecondStepListsResolver
         }
       },
-      { path: 'step-3', component: ThirdStepComponent }
+      {
+        path: 'step-3',
+        component: ThirdStepComponent,
+        resolve: {
+          medUser: MedUserByAuthResolver,
+          medDocumentConfigurations: MedDocumentConfigurationsResolver
+        }
+      }
     ]
   }
 ];
@@ -37,7 +45,8 @@ const routes: Routes = [
   ],
   providers: [
     SecondStepListsResolver,
-    SecondStepMedUserResolver
+    MedUserByAuthResolver,
+    MedDocumentConfigurationsResolver
   ]
 })
 export class RegistrationRoutingModule { }

@@ -71,6 +71,8 @@ import { AudienceApi } from './services/custom/Audience';
 import { PoolApi } from './services/custom/Pool';
 import { AnswerApi } from './services/custom/Answer';
 import { VoteApi } from './services/custom/Vote';
+import { MedUserMedDocumentApi } from './services/custom/MedUserMedDocument';
+import { AdditionalApi } from './services/custom/Additional';
 /**
 * @module SDKBrowserModule
 * @description
@@ -124,6 +126,8 @@ export class SDKBrowserModule {
         PoolApi,
         AnswerApi,
         VoteApi,
+        MedUserMedDocumentApi,
+        AdditionalApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

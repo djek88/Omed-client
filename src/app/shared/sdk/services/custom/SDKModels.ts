@@ -22,6 +22,8 @@ import { Audience } from '../../models/Audience';
 import { Pool } from '../../models/Pool';
 import { Answer } from '../../models/Answer';
 import { Vote } from '../../models/Vote';
+import { MedUserMedDocument } from '../../models/MedUserMedDocument';
+import { Additional } from '../../models/Additional';
 
 export interface Models { [name: string]: any }
 
@@ -51,6 +53,8 @@ export class SDKModels {
     Pool: Pool,
     Answer: Answer,
     Vote: Vote,
+    MedUserMedDocument: MedUserMedDocument,
+    Additional: Additional,
     
   };
 
