@@ -5,6 +5,7 @@ import { RegistrationComponent } from './registration.component';
 import { FirstStepComponent }    from './first-step/first-step.component';
 import { SecondStepComponent }   from './second-step/second-step.component';
 import { ThirdStepComponent }    from './third-step/third-step.component';
+import { FinishComponent }    from './finish/finish.component';
 
 import { SecondStepListsResolver }               from './second-step/second-step-lists-resolver.service';
 import { MedUserByAuthResolver }                 from './shared/med-user-by-auth-resolver.service';
@@ -31,6 +32,10 @@ const routes: Routes = [
           medUser: MedUserByAuthResolver,
           medDocumentConfigurations: MedDocumentConfigurationsResolver
         }
+      },
+      {
+        path: 'finish',
+        component: FinishComponent
       }
     ]
   }
