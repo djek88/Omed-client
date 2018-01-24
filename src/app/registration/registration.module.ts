@@ -8,6 +8,7 @@ import { RegistrationComponent } from './registration.component';
 import { FirstStepComponent } from './first-step/first-step.component';
 import { SecondStepComponent } from './second-step/second-step.component';
 import { ThirdStepComponent } from './third-step/third-step.component';
+import { FinishComponent } from './finish/finish.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ThirdStepComponent } from './third-step/third-step.component';
     RegistrationComponent,
     FirstStepComponent,
     SecondStepComponent,
-    ThirdStepComponent
+    ThirdStepComponent,
+    FinishComponent
   ],
   providers: [
     SignUpService

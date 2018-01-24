@@ -49,7 +49,7 @@ export class ThirdStepComponent implements OnInit {
 
     this.signUpService.registrateThirdStep(this.medUser.id, data)
       .subscribe(() => {
-        this.router.navigate(['step-4'], { relativeTo: this.route.parent });
+        this.router.navigate(['finish'], { relativeTo: this.route.parent });
       });
   }
 
