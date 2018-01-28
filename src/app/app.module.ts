@@ -3,6 +3,7 @@ import { NgModule }      from '@angular/core';
 import { Router }        from '@angular/router';
 
 import { CoreModule }       from './core/core.module';
+import { LoginModule }      from './login/login.module'
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     CoreModule,
+    LoginModule,
     AppRoutingModule
   ],
   declarations: [

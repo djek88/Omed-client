@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
   },
-  { path: '', redirectTo: 'registration', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
