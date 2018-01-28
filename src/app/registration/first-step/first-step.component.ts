@@ -2,7 +2,10 @@ import { Component, OnInit }                  from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute }             from '@angular/router';
 
-import { Account, MedUser, AccountApi } from '../../shared/sdk';
+import 'rxjs/add/operator/mergeMap';
+
+import { Account, MedUser }             from '../../shared/sdk';
+import { AuthService }                  from '../../login/auth.service';
 import { SignUpService }                from '../shared/sign-up.service';
 import { TextMasksService }             from '../../core/text-masks.service';
 
@@ -21,8 +24,8 @@ export class FirstStepComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private signUpService: SignUpService,
+    private authService: AuthService,
     public textMasks: TextMasksService,
-    public accountApi: AccountApi,
     public router: Router,
     public route: ActivatedRoute
   ) {
@@ -46,11 +49,9 @@ export class FirstStepComponent implements OnInit {
     const account = this.prepareAccountData();
 
     this.signUpService.registrateFirstStep(account, medUser)
+      .flatMap(() => this.authService.login(account))
       .subscribe(() => {
-        this.accountApi.login(account, 'user', true)
-          .subscribe(() => {
-            this.router.navigate(['step-2'], { relativeTo: this.route.parent })
-          });
+        this.router.navigate(['step-2'], { relativeTo: this.route.parent })
       });
   }
 

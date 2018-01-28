@@ -91,7 +91,8 @@ export class SignUpService {
     const fd = new FormData();
     fd.append('file', data.file);
 
-    return this.http.post(url, fd, { headers });
+    return this.http.post(url, fd, { headers })
+      .flatMap(() => this.medUserApi.patchAttributes(id, { moreProof: false }));
   }
 
   getTypes() {
