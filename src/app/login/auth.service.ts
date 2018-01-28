@@ -18,15 +18,13 @@ export class AuthService {
     return this.accountApi.isAuthenticated();
   }
 
-  getCurrentMedUser(): Observable<MedUser> {
-    return this.accountApi.getUser(this.auth.getCurrentUserId());
-  }
+  login(credentials: any, rememeberMe?: boolean) {
+    return this.accountApi.login(credentials, 'user', rememeberMe);
 
-  login(credentials: any) {
-    let loginRes;
+    /*let loginRes;
 
-    return this.accountApi.login(credentials, null)
-      /*.flatMap((data) => {
+    return this.accountApi.login(credentials, null, rememeberMe)
+      .flatMap((data) => {
         loginRes = data;
         return this.accountApi.findById(loginRes.userId, { include: 'user' });
       })
@@ -42,4 +40,7 @@ export class AuthService {
     return this.accountApi.logout();
   }
 
+  getCurrentMedUser(): Observable<MedUser> {
+    return this.accountApi.getUser(this.auth.getCurrentUserId());
+  }
 }
