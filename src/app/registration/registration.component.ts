@@ -3,8 +3,6 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
 
 @Component({
   selector: 'omed-registration',

@@ -29,13 +29,10 @@ p {
   color: #b1c1d3;
 }
 
-.submit {
+.submit-btn {
   overflow: hidden;
   position: relative;
   cursor: pointer;
-}
-
-.submit-btn {
   background-color: #2b9cf2;
   padding: 15px 18.75px;
   font-size: 0.875rem;

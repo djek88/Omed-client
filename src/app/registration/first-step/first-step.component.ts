@@ -4,10 +4,10 @@ import { Router, ActivatedRoute }             from '@angular/router';
 
 import 'rxjs/add/operator/mergeMap';
 
-import { Account, MedUser }             from '../../shared/sdk';
-import { AuthService }                  from '../../login/auth.service';
-import { SignUpService }                from '../shared/sign-up.service';
-import { TextMasksService }             from '../../core/text-masks.service';
+import { Account, MedUser } from '../../shared/sdk';
+import { AuthService }      from '../../login/auth.service';
+import { SignUpService }    from '../shared/sign-up.service';
+import { TextMasksService } from '../../core/text-masks.service';
 
 @Component({
   selector: 'omed-first-step',
@@ -25,9 +25,9 @@ export class FirstStepComponent implements OnInit {
     private fb: FormBuilder,
     private signUpService: SignUpService,
     private authService: AuthService,
-    public textMasks: TextMasksService,
-    public router: Router,
-    public route: ActivatedRoute
+    private textMasks: TextMasksService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.types = this.signUpService.getTypes();
     this.areas = this.signUpService.getAreas();
@@ -38,10 +38,7 @@ export class FirstStepComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    if (this.signUpForm.invalid) {
-      this.showTips();
-      return;
-    }
+    if (this.signUpForm.invalid) return this.showTips();
 
     this.formSubmitted = true;
 
