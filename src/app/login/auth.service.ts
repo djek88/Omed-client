@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { LoopBackAuth, AccountApi, Account, MedUser } from '../shared/sdk';
+import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../shared/sdk';
 
 @Injectable()
 export class AuthService {
@@ -38,6 +38,17 @@ export class AuthService {
 
   logout() {
     return this.accountApi.logout();
+  }
+
+  resetPasswordRequest(email: string) {
+    return this.accountApi.resetPassword({email});
+  }
+
+  setPassword(password: string, accessTokenId: string) {
+    return this.accountApi.setPassword(password, (headers) => {
+      headers.set('Authorization', LoopBackConfig.getAuthPrefix() + accessTokenId);
+      return headers;
+    });
   }
 
   getCurrentMedUser(): Observable<MedUser> {

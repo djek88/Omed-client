@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute }             from '@angular/router';
 
 import { AuthService }                        from '../auth.service';
 
@@ -13,11 +12,11 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
 
   formSubmitted = false;
+  errMessage: string;
+  sendedSuccessfully = false;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
     private authService: AuthService
   ) {
     this.createForm();
@@ -30,19 +29,21 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetPasswordForm.invalid) return this.showTips();
 
     this.formSubmitted = true;
+    this.errMessage = '';
 
-    console.log('submitted');
-    return;
+    const email = this.resetPasswordForm.get('email').value;
 
-    /*const credentials = {
-      email: this.resetPasswordForm.get('email').value,
-      password: this.resetPasswordForm.get('password').value
-    };
-
-    this.authService.login(credentials)
+    this.authService.resetPasswordRequest(email)
       .subscribe(() => {
-        //this.router.navigate(['']);
-      });*/
+        this.sendedSuccessfully = true;
+      }, (err) => {
+        if (err.code === 'EMAIL_NOT_FOUND') {
+          this.formSubmitted = false;
+          this.errMessage = 'We do not recognize this e-mail';
+          this.resetPasswordForm.get('email').setValue('');
+          this.showTips();
+        }
+      });
   }
 
   private createForm() {
