@@ -2,7 +2,8 @@ import { Component, OnInit }                  from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router }   from '@angular/router';
 
-import { AuthService }                        from '../auth.service';
+import { AuthService }          from '../auth.service';
+import { FormUtilitiesService } from '../../core/form-utilities.service';
 
 @Component({
   selector: 'omed-change-password',
@@ -19,7 +20,8 @@ export class ChangePasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private formUtils: FormUtilitiesService
   ) {
     this.createForm();
   }
@@ -28,7 +30,9 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.changePasswordForm.invalid) return this.showTips();
+    if (this.changePasswordForm.invalid) {
+      return this.formUtils.showTips(this.changePasswordForm.controls);
+    }
 
     this.formSubmitted = true;
 
@@ -47,16 +51,5 @@ export class ChangePasswordComponent implements OnInit {
     this.changePasswordForm = this.fb.group({
       password: ['', Validators.required]
     });
-  }
-
-  private showTips() {
-    const ctrls = this.changePasswordForm.controls;
-
-    for (let control in ctrls) {
-      if (ctrls.hasOwnProperty(control)) {
-        ctrls[control].markAsDirty();
-        ctrls[control].markAsTouched();
-      } 
-    }
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router }     from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -11,7 +12,8 @@ export class AuthService {
 
   constructor(
     private auth: LoopBackAuth,
-    private accountApi: AccountApi
+    private accountApi: AccountApi,
+    private router: Router
   ) { }
 
   isLoggedIn() {
@@ -34,6 +36,14 @@ export class AuthService {
         console.log(loginRes);
         return loginRes;
       });*/
+  }
+
+  afterLoginRedirect() {
+    if (this.isLoggedIn()) {
+      // Redirect the user with "navigateByUrl",
+      // due to "redirectUrl" is absolute path with query params, anchor, etc
+      this.router.navigateByUrl(this.redirectUrl || '/');
+    }
   }
 
   logout() {

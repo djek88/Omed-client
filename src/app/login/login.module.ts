@@ -1,12 +1,11 @@
 import { NgModule }     from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
-import { LoginRoutingModule }     from './login-routing.module';
-import { LoginComponent }         from './login.component';
-import { AuthGuard }              from './auth-guard.service';
-import { AuthService }            from './auth.service';
-import { SignInComponent }        from './sign-in/sign-in.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { LoginRoutingModule }      from './login-routing.module';
+import { LoginComponent }          from './login.component';
+import { AuthService }             from './auth.service';
+import { SignInComponent }         from './sign-in/sign-in.component';
+import { ResetPasswordComponent }  from './reset-password/reset-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ChangePasswordComponent
   ],
   providers: [
-    AuthGuard,
     AuthService
   ]
 })

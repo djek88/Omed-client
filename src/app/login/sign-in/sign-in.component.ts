@@ -1,8 +1,8 @@
-import { Component, OnInit }                  from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute }             from '@angular/router';
+import { Component, OnInit }                        from '@angular/core';
+import { FormBuilder, FormGroup, Validators }       from '@angular/forms';
 
-import { AuthService }                        from '../auth.service';
+import { AuthService }          from '../auth.service';
+import { FormUtilitiesService } from '../../core/form-utilities.service';
 
 @Component({
   selector: 'omed-sign-in',
@@ -16,9 +16,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private formUtils: FormUtilitiesService
   ) {
     this.createForm();
   }
@@ -27,7 +26,9 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.signInForm.invalid) return this.showTips();
+    if (this.signInForm.invalid) {
+      return this.formUtils.showTips(this.signInForm.controls);
+    }
 
     this.formSubmitted = true;
 
@@ -37,9 +38,7 @@ export class SignInComponent implements OnInit {
     };
 
     this.authService.login(credentials)
-      .subscribe(() => {
-        //this.router.navigate(['']);
-      });
+      .subscribe(() => this.authService.afterLoginRedirect());
   }
 
   private createForm() {
@@ -50,16 +49,5 @@ export class SignInComponent implements OnInit {
       ])],
       password: ['', Validators.required]
     });
-  }
-
-  private showTips() {
-    const ctrls = this.signInForm.controls;
-
-    for (let control in ctrls) {
-      if (ctrls.hasOwnProperty(control)) {
-        ctrls[control].markAsDirty();
-        ctrls[control].markAsTouched();
-      } 
-    }
   }
 }

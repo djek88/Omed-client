@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AuthService }                        from '../auth.service';
+import { AuthService }          from '../auth.service';
+import { FormUtilitiesService } from '../../core/form-utilities.service';
 
 @Component({
   selector: 'omed-reset-password',
@@ -17,7 +18,8 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private formUtils: FormUtilitiesService
   ) {
     this.createForm();
   }
@@ -26,7 +28,9 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.resetPasswordForm.invalid) return this.showTips();
+    if (this.resetPasswordForm.invalid) {
+      return this.formUtils.showTips(this.resetPasswordForm.controls);
+    }
 
     this.formSubmitted = true;
     this.errMessage = '';
@@ -41,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
           this.formSubmitted = false;
           this.errMessage = 'We do not recognize this e-mail';
           this.resetPasswordForm.get('email').setValue('');
-          this.showTips();
+          this.formUtils.showTips(this.resetPasswordForm.controls);
         }
       });
   }
@@ -53,16 +57,5 @@ export class ResetPasswordComponent implements OnInit {
         Validators.required
       ])]
     });
-  }
-
-  private showTips() {
-    const ctrls = this.resetPasswordForm.controls;
-
-    for (let control in ctrls) {
-      if (ctrls.hasOwnProperty(control)) {
-        ctrls[control].markAsDirty();
-        ctrls[control].markAsTouched();
-      } 
-    }
   }
 }
