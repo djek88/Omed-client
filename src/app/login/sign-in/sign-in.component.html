@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+  <div class="col-10">
+    <nav class="navbar mb-5 pb-5">
+      <a class="navbar-brand" routerLink="/">
+        <img src="/assets/icons/omed-brand.svg">
+      </a>
+
+      <small class="ml-auto">
+        Not a member yet?
+        <strong><a routerLink="../registration">Sign up now!</a></strong>
+      </small>
+    </nav>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-md-8 text-center">
+    <h2>Sign-in</h2>
+    <p>Please identify yourself to see the requested page.</p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-sm-11 col-md-8 col-lg-5">
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
+        <div class="form-group col">
+          <input id="email" class="form-control" placeholder="Email" formControlName="email">
+          <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col">
+          <input type="password" id="password" class="form-control" placeholder="Password" formControlName="password">
+          <label for="password"><i class="fa fa-lock" aria-hidden="true"></i></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col">
+          <button type="submit" class="btn btn-primary btn-block submit-btn" [disabled]="formSubmitted">Next</button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col" style="text-align: end;">
+        <small><strong><a routerLink="./reset-password">Forgot your password?</a></strong></small>
+      </div>
+    </div>
+  </div>
+</div>

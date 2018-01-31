@@ -32,12 +32,12 @@ export class SecondStepComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private signUpService: SignUpService,
-    private formUtilities: FormUtilitiesService,
+    private formUtils: FormUtilitiesService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.minDate = this.formUtilities.dateToString(-90);
-    this.maxDate = this.formUtilities.dateToString(-18);
+    this.minDate = this.formUtils.dateToString(-90);
+    this.maxDate = this.formUtils.dateToString(-18);
     this.genderOpts = this.signUpService.getGenders();
 
     this.createForm();
@@ -58,7 +58,9 @@ export class SecondStepComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.signUpForm.invalid) return this.showTips();
+    if (this.signUpForm.invalid) {
+      return this.formUtils.showTips(this.signUpForm.controls);
+    }
 
     this.formSubmitted = true;
 
@@ -103,17 +105,6 @@ export class SecondStepComponent implements OnInit {
     }
 
     return data;
-  }
-
-  private showTips() {
-    const ctrls = this.signUpForm.controls;
-
-    for (let control in ctrls) {
-      if (ctrls.hasOwnProperty(control)) {
-        ctrls[control].markAsDirty();
-        ctrls[control].markAsTouched();
-      } 
-    }
   }
 
   private createForm() {

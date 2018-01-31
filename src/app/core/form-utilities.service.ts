@@ -4,6 +4,15 @@ import { Injectable } from '@angular/core';
 export class FormUtilitiesService {
   constructor() { }
 
+  showTips(controls) {
+    for (let control in controls) {
+      if (controls.hasOwnProperty(control)) {
+        controls[control].markAsDirty();
+        controls[control].markAsTouched();
+      } 
+    }
+  }
+
   readFileAsDataUrl(file, cb) {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);

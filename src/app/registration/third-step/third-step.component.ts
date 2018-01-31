@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router }             from '@angular/router';
 
 import { SignUpService } from '../shared/sign-up.service';
-import { FormUtilitiesService } from '../../core/form-utilities.service';
 
 import { MedUser } from '../../shared/sdk';
 
@@ -22,7 +21,6 @@ export class ThirdStepComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private formUtilities: FormUtilitiesService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router

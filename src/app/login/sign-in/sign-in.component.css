@@ -1,15 +1,24 @@
+small {
+  font-size: 87%;
+}
+
+strong a {
+  color: #2b9cf2;
+  text-decoration: none;
+}
+
 h2 {
   font-weight: 300;
   font-size: 30px;
+  color: #36434d;
 }
 
 p {
-  color: #6a889a;
+  color: #9E9E9E;
   font-size: 14px;
 }
 
-.form-group .form-control,
-.input-group .form-control {
+.form-group .form-control {
   position: relative;
   padding-left: 44px;
   height: 53.5px;

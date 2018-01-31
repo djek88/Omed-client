@@ -1,4 +1,5 @@
 /* tslint:disable */
+export * from './Email';
 export * from './Account';
 export * from './MedUser';
 export * from './University';
