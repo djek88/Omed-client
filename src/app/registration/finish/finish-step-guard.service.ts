@@ -4,7 +4,7 @@ import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
 
-import { AuthService } from '../../login/auth.service';
+import { AuthService } from '../../login';
 
 @Injectable()
 export class FinishStepGuard implements CanActivate {

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router }             from '@angular/router';
 
 import { Lists }                       from './second-step-lists-resolver.service';
 import { SignUpService, DegreeGroups } from '../shared/sign-up.service';
-import { FormUtilitiesService }        from '../../core/form-utilities.service';
+import { FormUtilitiesService }        from '../../core';
 
 import { MedUser, City, Specialty, University, Hospital } from '../../shared/sdk';
 

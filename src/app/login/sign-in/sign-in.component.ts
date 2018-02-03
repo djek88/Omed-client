@@ -1,8 +1,8 @@
 import { Component, OnInit }                        from '@angular/core';
 import { FormBuilder, FormGroup, Validators }       from '@angular/forms';
 
-import { AuthService }          from '../auth.service';
-import { FormUtilitiesService } from '../../core/form-utilities.service';
+import { AuthService }          from '../shared';
+import { FormUtilitiesService } from '../../core';
 
 @Component({
   selector: 'omed-sign-in',

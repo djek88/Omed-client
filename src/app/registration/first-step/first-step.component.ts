@@ -5,9 +5,9 @@ import { Router, ActivatedRoute }             from '@angular/router';
 import 'rxjs/add/operator/mergeMap';
 
 import { Account, MedUser } from '../../shared/sdk';
-import { AuthService }      from '../../login/auth.service';
+import { AuthService }      from '../../login';
 import { SignUpService }    from '../shared/sign-up.service';
-import { TextMasksService } from '../../core/text-masks.service';
+import { TextMasksService } from '../../core';
 
 @Component({
   selector: 'omed-first-step',

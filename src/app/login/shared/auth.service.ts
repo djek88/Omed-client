@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../shared/sdk';
+import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../../shared/sdk';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()

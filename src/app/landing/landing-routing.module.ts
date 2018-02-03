@@ -1,7 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NotAuthGuard }     from '../login/not-auth-guard.service';
+import { NotAuthGuard }     from '../login';
 import { LandingComponent } from './landing.component';
 import { HomeComponent }    from './home/home.component';
 
