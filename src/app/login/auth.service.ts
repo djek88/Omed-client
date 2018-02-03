@@ -3,8 +3,10 @@ import { Router }     from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../shared/sdk';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +15,7 @@ export class AuthService {
   constructor(
     private auth: LoopBackAuth,
     private accountApi: AccountApi,
+    private cookieService: CookieService,
     private router: Router
   ) { }
 
@@ -21,7 +24,9 @@ export class AuthService {
   }
 
   login(credentials: any, rememeberMe?: boolean) {
-    return this.accountApi.login(credentials, 'user', rememeberMe);
+    return this.accountApi.login(credentials, null, rememeberMe)
+      .flatMap(() => this.getCurrentUserData())
+      .map(() => this.auth.getToken());
 
     /*let loginRes;
 
@@ -38,15 +43,8 @@ export class AuthService {
       });*/
   }
 
-  afterLoginRedirect() {
-    if (this.isLoggedIn()) {
-      // Redirect the user with "navigateByUrl",
-      // due to "redirectUrl" is absolute path with query params, anchor, etc
-      this.router.navigateByUrl(this.redirectUrl || '/');
-    }
-  }
-
   logout() {
+    this.setLastSignedInUserData();
     return this.accountApi.logout();
   }
 
@@ -61,7 +59,52 @@ export class AuthService {
     });
   }
 
+  afterLoginRedirect() {
+    if (this.isLoggedIn()) {
+      // Redirect the user with "navigateByUrl",
+      // due to "redirectUrl" is absolute path with query params, anchor, etc
+      this.router.navigateByUrl(this.redirectUrl || '/');
+    }
+  }
+
+  setLastSignedInUserData() {
+    const account = this.accountApi.getCachedCurrent();
+    const credentials = {
+      name: account.user.firstName + ' ' + account.user.lastName,
+      email: account.email
+    };
+    this.cookieService.set('lastSignedInUserData', JSON.stringify(credentials), 1000);
+  }
+
+  getLastSignedInUserData() {
+    try {
+      return JSON.parse(this.cookieService.get('lastSignedInUserData'));
+    } catch(err) {
+      return null;
+    }
+  }
+
+  deleteLastSignedInUserData() {
+    this.cookieService.delete('lastSignedInUserData');
+  }
+
+  markAsHasSignedIn() {
+    this.cookieService.set('hasSignedIn', 'true', 1000);
+  }
+
+  isHasSignedIn() {
+    return this.cookieService.check('hasSignedIn');
+  }
+
   getCurrentMedUser(): Observable<MedUser> {
     return this.accountApi.getUser(this.auth.getCurrentUserId());
+  }
+
+  getCurrentUserData(): Observable<Account> {
+    return this.accountApi.getCurrent({include: 'user'})
+      .map(data => {
+        this.auth.setUser(data);
+        return data;
+      });
   }
 }

@@ -10,8 +10,8 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, // should be replaced by more appropriate route
-  //{ path: '**', component: PageNotFoundComponent }
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,29 @@
+.container-fluid {
+  height: 100%;
+  font-family: Roboto;
+  color: #12425f;
+  overflow-x: hidden;
+  -ms-overflow-x: hidden;
+  background: linear-gradient(135deg,#fff 0%,#f3f6f8 100%);
+}
+
+.container-fluid::before {
+  content: "";
+  position: fixed;
+  left: -22%;
+  top: 50%;
+  right: 0;
+  width: 125%;
+  height: 100%;
+  background: linear-gradient(135deg,#f3f6f8 0%,#fff 100%);
+  transform: rotate(15deg);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  box-shadow: none;
+  color: #2a73b5;
+  font-weight: 600;
+  font-size: 13.5px;
+  margin: 0 15px;
+  padding: 0;
+}

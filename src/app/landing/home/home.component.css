@@ -1,0 +1,224 @@
+.title {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -1.7px;
+  color: #182359;
+  margin: 0
+}
+
+.description {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.53;
+  letter-spacing: -.2px;
+  margin-top: 22px;
+  color: #8a8fa9;
+}
+
+.background {
+  background: url(/assets/images/home/background.svg) no-repeat center!important;
+  float: left;
+  position: relative;
+  background-size: contain!important;
+  padding: 60px 45px 40px;
+  width: 100%;
+  height: 423px;
+}
+
+.sign-in-title {
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -.6px;
+  color: #182359
+}
+
+.sign-in-description {
+  font-size: 13px;
+  font-weight: 600;
+  color: #182359
+}
+
+.form-group .form-control {
+  position: relative;
+  padding-left: 44px;
+  height: 55px;
+  border: 1px solid #f8f9fb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  line-height: 43px;
+  color: #12425f;
+  background-color: #f3f3f5;
+  -webkit-appearance: none;
+}
+
+.form-group label {
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  left: 31px;
+  width: 17px;
+  color: #b1c1d3;
+}
+
+.cancel-btn img {
+  cursor: pointer;
+  width: 9px;
+  right: 32px;
+  top: 22px;
+  position: absolute;
+}
+
+.keep-signed {
+  margin: 6px 0 0 8px;
+}
+
+.keep-signed-label {
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #667481;
+  margin-left: 10px;
+}
+
+.submit-btn {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background-color: #2b9cf2;
+  padding: 15px 18.75px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 20px;
+  border: 1px solid transparent;
+}
+
+.btn-block.submit-btn:active,
+.btn-block.submit-btn:focus {
+  background-color: #2b9cf2;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+
+.link {
+  color: #2a73b5;
+  font-weight: 600;
+  font-size: 13.5px;
+  text-decoration: none;
+}
+
+.submit-btn:before {
+  content: '';
+  position: absolute;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  width: 30%;
+  height: 500%;
+  background: rgba(255,255,255,0.1);
+  z-index: 1;
+  right: 0;
+  top: 0;
+  margin: -5px 0 0 -5px;
+  -webkit-transform-origin: 0 0;
+  -webkit-transform: rotate(-20deg);
+  -moz-transform-origin: 0 0;
+  -moz-transform: rotate(-20deg);
+  -ms-transform-origin: 0 0;
+  -ms-transform: rotate(-20deg);
+  transform-origin: 0 0;
+  transform: rotate(-20deg);
+}
+
+.submit-btn:hover:before {
+  width: 80%;
+}
+
+.divider {
+  text-align: center;
+}
+
+.divider > span {
+  background: #fbfcfd;
+  position: relative;
+  z-index: 1;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.divider > span + div {
+  position: relative;
+  top: -11px;
+  border-top: 1px solid #999999;
+  left: 0;
+  height: 1px;
+  width: 100%;
+}
+
+.btn-block.sign-up-btn,
+.btn-block.sign-up-btn:hover {
+  background: #12425f;
+  color: white;
+}
+
+.btn-block.sign-up-btn:active,
+.btn-block.sign-up-btn:focus {
+  background: #12425f;
+  color: white;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+
+.ng-touched.ng-valid + label,
+.ng-dirty.ng-valid + label {
+  color: #2c9cf2;
+}
+
+.ng-touched.ng-invalid + label,
+.ng-dirty.ng-invalid + label {
+  color: #FF2A63;
+}
+
+.description2 {
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -.3px;
+  color: #182359;
+  margin-top: 40px;
+  margin-bottom: 17px
+}
+
+.description2 span {
+  font-weight: 700;
+  color: #4386fc
+}
+
+.seperator2 {
+  height: 1px;
+  background-color: #ecf1fd;
+  margin: 20px 0
+}
+
+.style5 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -.5px;
+  color: #182359;
+  margin: 0
+}
+
+.style6 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.73;
+    letter-spacing: -.2px;
+    color: #8a8fa9;
+    margin-top: 10px
+}

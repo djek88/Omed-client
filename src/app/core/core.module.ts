@@ -4,9 +4,10 @@ import {
 import { CommonModule }     from '@angular/common';
 import { NgbModule }        from '@ng-bootstrap/ng-bootstrap';
 
-import { SDKBrowserModule } from '../shared/sdk/index';
-import { TextMasksService } from './text-masks.service';
+import { SDKBrowserModule }     from '../shared/sdk/index';
+import { TextMasksService }     from './text-masks.service';
 import { FormUtilitiesService } from './form-utilities.service';
+import { CookieService }        from 'ngx-cookie-service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { FormUtilitiesService } from './form-utilities.service';
   declarations: [],
   providers: [
     TextMasksService,
-    FormUtilitiesService
+    FormUtilitiesService,
+    CookieService
   ]
 })
 export class CoreModule {
