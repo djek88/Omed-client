@@ -5,6 +5,7 @@ import { PlatformRoutingModule } from './platform-routing.module';
 import { PlatformComponent }     from './platform.component';
 import { NavbarComponent }       from './navbar/navbar.component';
 import { NavbarSearchComponent } from './navbar/navbar-search/navbar-search.component';
+import { SidebarComponent }      from './sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { NavbarSearchComponent } from './navbar/navbar-search/navbar-search.comp
     PlatformComponent,
     NavbarComponent,
     NavbarSearchComponent,
+    SidebarComponent,
   ]
 })
 export class PlatformModule { }
