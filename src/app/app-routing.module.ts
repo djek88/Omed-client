@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: './registration/registration.module#RegistrationModule'
   },
   {
+    path: 'platform',
+    loadChildren: './platform/platform.module#PlatformModule'
+  },
+  {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
   },
