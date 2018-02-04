@@ -11,10 +11,10 @@
   content: "";
   position: fixed;
   left: -22%;
-  top: 50%;
+  top: 40%;
   right: 0;
   width: 125%;
   height: 100%;
   background: linear-gradient(135deg,#f3f6f8 0%,#fff 100%);
-  transform: rotate(15deg);
+  transform: rotate(11deg);
 }
