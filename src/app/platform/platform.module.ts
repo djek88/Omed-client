@@ -6,6 +6,7 @@ import { PlatformComponent }     from './platform.component';
 import { NavbarComponent }       from './navbar/navbar.component';
 import { NavbarSearchComponent } from './navbar/navbar-search/navbar-search.component';
 import { SidebarComponent }      from './sidebar/sidebar.component';
+import { HomeComponent }         from './home/home.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { SidebarComponent }      from './sidebar/sidebar.component';
     NavbarComponent,
     NavbarSearchComponent,
     SidebarComponent,
+    HomeComponent
   ]
 })
 export class PlatformModule { }
