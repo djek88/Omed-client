@@ -7,7 +7,7 @@ import 'rxjs/add/operator/take';
 import { AuthService } from '../login';
 
 @Injectable()
-export class isNotApprovedGuard implements CanActivateChild {
+export class NotApprovedGuard implements CanActivateChild {
   constructor(private authService: AuthService) { }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {

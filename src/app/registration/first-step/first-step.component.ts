@@ -22,10 +22,10 @@ export class FirstStepComponent implements OnInit {
   formSubmitted = false;
 
   constructor(
+    public textMasks: TextMasksService,
     private fb: FormBuilder,
     private signUpService: SignUpService,
     private authService: AuthService,
-    private textMasks: TextMasksService,
     private router: Router,
     private route: ActivatedRoute
   ) {
