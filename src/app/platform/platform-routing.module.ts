@@ -14,6 +14,10 @@ const routes: Routes = [{
   canActivate: [AuthGuard, /*ApprovedGuard*/],
   children: [
     {
+      path: 'parametres',
+      loadChildren: './settings/settings.module#SettingsModule'
+    },
+    {
       path: '',
       component: PlatformLayoutComponent,
       children: [
