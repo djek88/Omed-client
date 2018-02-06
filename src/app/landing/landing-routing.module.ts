@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
-    //canActivateChild: [NotAuthGuard]
+    canActivateChild: [NotAuthGuard],
     children: [
       {
         path: '',
