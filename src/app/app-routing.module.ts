@@ -7,14 +7,14 @@ const routes: Routes = [
     loadChildren: './registration/registration.module#RegistrationModule'
   },
   {
-    path: 'platform',
-    loadChildren: './platform/platform.module#PlatformModule'
-  },
-  {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
   },
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: '',
+    loadChildren: './platform/platform.module#PlatformModule'
+  },
+  // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent }
 ];
 
