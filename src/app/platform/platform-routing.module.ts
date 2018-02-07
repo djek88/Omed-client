@@ -1,7 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from '../login';
+import { AuthGuard, ApprovedGuard } from '../login';
 
 import { PlatformComponent }       from './platform.component';
 import { PlatformLayoutComponent } from './platform-layout/platform-layout.component';
@@ -11,7 +11,7 @@ import { ProfileComponent }        from './profile/profile.component';
 const routes: Routes = [{
   path: '',
   component: PlatformComponent,
-  canActivate: [AuthGuard, /*ApprovedGuard*/],
+  canActivate: [AuthGuard, ApprovedGuard],
   children: [
     {
       path: 'parametres',

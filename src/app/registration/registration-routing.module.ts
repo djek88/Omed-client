@@ -1,11 +1,10 @@
 import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard }        from '../login';
-import { NotApprovedGuard } from './not-approved-guard.service';
-import { SecondStepGuard }  from './second-step/second-step-guard.service';
-import { ThirdStepGuard }   from './third-step/third-step-guard.service';
-import { FinishStepGuard }  from './finish/finish-step-guard.service';
+import { AuthGuard, NotApprovedGuard } from '../login';
+import { SecondStepGuard }             from './second-step/second-step-guard.service';
+import { ThirdStepGuard }              from './third-step/third-step-guard.service';
+import { FinishStepGuard }             from './finish/finish-step-guard.service';
 
 import { SecondStepListsResolver }           from './second-step/second-step-lists-resolver.service';
 import { MedUserByAuthResolver }             from './shared/med-user-by-auth-resolver.service';
@@ -67,7 +66,6 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
-    NotApprovedGuard,
     SecondStepGuard,
     ThirdStepGuard,
     FinishStepGuard,
