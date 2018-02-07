@@ -7,7 +7,8 @@ import 'rxjs/add/operator/filter';
 @Component({
   selector: 'omed-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RegistrationComponent implements OnInit {
   showNavbar: boolean = true;
