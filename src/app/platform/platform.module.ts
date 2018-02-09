@@ -5,6 +5,7 @@ import { PlatformRoutingModule }   from './platform-routing.module';
 import { PlatformComponent }       from './platform.component';
 import { NavbarComponent }         from './navbar/navbar.component';
 import { NavbarSearchComponent }   from './navbar/navbar-search/navbar-search.component';
+import { NavbarMenuComponent }     from './navbar/navbar-menu/navbar-menu.component';
 import { PlatformLayoutComponent } from './platform-layout/platform-layout.component';
 import { SidebarComponent }        from './sidebar/sidebar.component';
 import { HomeComponent }           from './home/home.component';
@@ -19,6 +20,7 @@ import { ProfileComponent }        from './profile/profile.component';
     PlatformComponent,
     NavbarComponent,
     NavbarSearchComponent,
+    NavbarMenuComponent,
     PlatformLayoutComponent,
     SidebarComponent,
     HomeComponent,

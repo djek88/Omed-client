@@ -97,14 +97,17 @@ export class AuthService {
   }
 
   getCurrentMedUser(): Observable<MedUser> {
-    return this.accountApi.getUser(this.auth.getCurrentUserId());
+    return this.getCurrentUserData()
+      .map((account: Account) => {
+        return account.user;
+      });
   }
 
   getCurrentUserData(): Observable<Account> {
     return this.accountApi.getCurrent({include: 'user'})
-      .map(data => {
-        this.auth.setUser(data);
-        return data;
+      .map((account: Account) => {
+        this.auth.setUser(account);
+        return account;
       });
   }
 }
