@@ -394,7 +394,7 @@ ol {
   padding: 0;
 }
 
-.nav>li {
+.nav .dropdown {
   float: left;
   position: relative;
 }
@@ -403,7 +403,7 @@ ul.nav {
   float: left;
 }
 
-.header .nav>li>a {
+.header .nav .dropdown>a {
   position: relative;
   display: block;
   padding: 15px 10px;
