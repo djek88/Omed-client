@@ -1119,6 +1119,7 @@ ul>li:first-child>.noti {
 
 .utop>.cr>a {
   width: 35px;
+  height: 35px;
   margin: auto;
   display: block;
   margin-bottom: 5px;

@@ -12,7 +12,9 @@ import { NavbarNotificationsComponent }  from './navbar/navbar-notifications/nav
 import { NavbarAccountComponent }        from './navbar/navbar-account/navbar-account.component';
 
 import { PlatformLayoutComponent }       from './platform-layout/platform-layout.component';
+import { ProfileLableComponent }         from './profile-lable/profile-lable.component';
 import { SidebarComponent }              from './sidebar/sidebar.component';
+
 import { HomeComponent }                 from './home/home.component';
 import { ProfileComponent }              from './profile/profile.component';
 
@@ -32,7 +34,8 @@ import { ProfileComponent }              from './profile/profile.component';
     PlatformLayoutComponent,
     SidebarComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileLableComponent
   ]
 })
 export class PlatformModule { }

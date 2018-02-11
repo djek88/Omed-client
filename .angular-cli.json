@@ -20,11 +20,20 @@
       "prefix": "omed",
       "styles": [
         "../node_modules/font-awesome/css/font-awesome.min.css",
+        "./assets/css/tgslkt.css",
+        "./assets/css/chati.css",
+        "./assets/css/readMoreFade.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "./assets/js/b_dropdown.js"
+        "./assets/js/omed_tag.js",
+        "./assets/js/readMoreFade.js",
+        "./assets/js/stickykit.js",
+        "./assets/js/autogrow.js",
+        "./assets/js/b_dropdown.js",
+        "./assets/js/b_transitions.js",
+        "./assets/js/carousel.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

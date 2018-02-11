@@ -1,0 +1,21 @@
+.rmore {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 0, 0, 0)), to(white));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 30px 0 30px 0;
+}
+.rmore > a {
+    background-color: #8bacbf;
+    padding: 2px 5px 3px 5px;
+    color: white;
+    border-radius: 3px;
+    text-decoration: none !important;
+    transition: all .3s;
+}
+.rmore > a:hover {
+    background-color: #678698;
+}

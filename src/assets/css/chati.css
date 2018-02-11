@@ -1,0 +1,552 @@
+.msg {
+    height: 64px;
+    width: 64px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: transparent;
+    /* border: 1px solid transparent; */
+    /* padding: 10px; */
+    box-shadow: 0 8px 8px transparent;
+    overflow: hidden;
+}
+
+.msg {
+    opacity: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-align-content: center;
+    align-content: center;
+    -moz-animation-name: dropHeader;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: cubic-bezier(0.415, 0.005, 0.185, 1);
+    -moz-animation-duration: 1s;
+    -moz-animation-delay: 600ms;
+    -moz-animation-fill-mode: forwards;
+    -webkit-animation-name: dropHeader;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(0.415, 0.005, 0.185, 1);
+    -webkit-animation-duration: 1s;
+    -webkit-animation-delay: 600ms;
+    -webkit-animation-fill-mode: forwards;
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.415, 0.005, 0.185, 1);
+    animation-duration: 1s;
+    animation-delay: 600ms;
+    animation-fill-mode: forwards;
+    transition: all 500ms cubic-bezier(0.415, 0.005, 0.185, 1);
+}
+
+.msg .ui {
+    width: 44px;
+    position: relative;
+    display: inline-block;
+    /* float: left; */
+    /* display: flex; */
+    /* flex-flow: column; */
+}
+
+.chats .ui .no {
+    color: #faf3ff;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 3px;
+    line-height: 1.3;
+    width: auto;
+    padding: 1px 4px;
+    top: 0;
+    margin: 0;
+    left: 33px;
+    position: absolute;
+    transition: opacity 2s .3s;
+    text-align: center;
+    background-color: #ed446e;
+}
+
+.mbody {
+    display: none;
+    /* -webkit-flex-grow: 1; */
+    /* flex-grow: 1; */
+    margin-left: 7px;
+}
+
+.msg.off:hover .mbody {
+    display: block;
+}
+
+.mbody .head {
+    /* display: flex; */
+}
+
+.mbody .head a {
+    flex: 1;
+    color: #4083a9;
+    font-weight: 500;
+    height: 18px;
+    overflow: hidden;
+}
+
+.mbody p {
+    font-size: 13px;
+    line-height: 18px;
+    height: 18px;
+    width: 244px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: opacity 1s .2s, height .9s, width 1s 0s;
+}
+
+@-webkit-keyframes dropHeader {
+    0% {
+        -webkit-transform: translateY(80px);
+        opacity: 0
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        opacity: 1
+    }
+}
+
+@keyframes dropHeader {
+    0% {
+        transform: translateY(80px);
+        opacity: 0
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+@-moz-keyframes dropHeader {
+    0% {
+        -moz-transform: translateY(80px);
+        opacity: 0
+    }
+    100% {
+        -moz-transform: translateY(0);
+        opacity: 1
+    }
+}
+
+.msg.off:hover, .msg.on {
+    width: 333px;
+    background-color: #ffffff;
+    /* background-size: 42%; */
+    /* background-image: url(https://t4.ftcdn.net/jpg/01/17/38/65/500_F_117386504_5vibY754r0pav71ZLswL7U5yWP7Yde3Y.jpg); */
+    border-radius: 6px;
+    /* padding: 3px 10px 0; */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.msg.off:hover .ust {
+    border-color: white;
+}
+
+.msg .ust {
+    border-radius: 10px;
+    width: 10px;
+    bottom: 6px;
+    right: -1px;
+    position: absolute;
+    height: 10px;
+    background-color: #0fd817;
+    border: 2px solid #efeff1;
+    transition: all 1s;
+}
+
+.ust.offline {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.ust.away {
+    background-color: #ffcd35;
+    border-color: #f3c32f;
+}
+
+.chats {
+    position: fixed;
+    width: 64px;
+    height: 100px;
+    left: 50%;
+    top: 55px;
+    margin-left: 550px;
+}
+
+.chatc {
+    width: 64px;
+    height: 58px;
+    position: relative;
+}
+
+.mbody .qdel_ {
+    top: 12px;
+}
+
+.msg .time {
+    padding-right: 15px;
+    display: inline-block;
+    float: right;
+}
+
+.new {
+    /* position: relative; */
+    /* padding: 0 5px; */
+}
+
+.qdel:hover,
+.qdel_:hover,
+.delc:hover,
+.delr:hover {
+    opacity: 1;
+}
+
+.chatp {
+    background-clip: padding-box;
+    position: absolute;
+    width: 275px;
+    height: 400px;
+    top: 0;
+    left: -269px;
+    z-index: 1500;
+    display: none;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, .15);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, .15);
+    padding: 10px 10px 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.oh {
+    overflow: hidden;
+}
+
+.chatp .ust {
+    position: relative;
+    display: inline-block;
+    border-color: #ffffff;
+    bottom: inherit;
+    margin-right: 5px;
+}
+
+.hr {
+    margin: 3px -10px 3px;
+    border-top: 1px solid #efeff1;
+}
+
+.va.hl.wc a:hover,
+.va.hl.wc a:focus {
+    /*color: #028be0;
+    text-decoration: underline;*/
+    opacity: .8;
+}
+
+.chatm {
+    padding: 10px;
+    margin-top: -10px;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*visibility: hidden;
+    transition: visibility 0s 0.2s;*/
+    display: none;
+}
+.chatm::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+}
+.chatm::-webkit-scrollbar-thumb {
+  background-color: rgba(18, 66, 95, 0.3);
+}
+.chatp .comment>.corp {
+    display: block;
+}
+
+.msg .txt {
+    max-width: 80%;
+    min-height: 26px;
+    border-radius: 10px;
+    padding: 6px 9px;
+    display: inline-block;
+    position: relative;
+    margin: 0 2px;
+    box-shadow: 0 1px 1px #ddd;
+}
+
+.msg .from .txt {
+    background-color: #0391fd;
+    color: #ffffff;
+    /*animation: slideUp 1s ease;*/
+}
+
+.msg .to .txt {
+    background-color: #fcfcfc;
+    /*animation: slideUp 1s ease;*/
+    margin-left: auto;
+    /* text-align: right; */
+    /* float: right; */
+    /* align-items: right; */
+}
+
+.c4 {
+    color: #24658c !important;
+}
+
+.chatp .qdel_ {
+    top: 8px;
+}
+
+.new textarea {
+    display: block;
+    border: 0;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 6px 25px 7px 7px;
+    font-size: 13px;
+    line-height: 16px;
+    color: #12425f;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.type {
+    width: 100%;
+    display: none;
+    padding: 2px 2px;
+    border-top: 1px solid #dbe4e8;
+    position: relative;
+    max-height: 139px;
+    overflow: hidden;
+}
+
+.msg.on>.chatp {
+    display: flex;
+    flex-flow: column;
+    right: 200px;
+    left: auto;
+}
+.msg.on .mbody {
+    display: inline-block;
+}
+
+.msg.on p, .msg.on .head .time {
+    height: 0;
+    opacity: 0;
+    width: 0;
+    /* transition: opacity .5s, height .8s, width 3s; */
+}
+
+.msg.on .ui .no {
+    opacity: 0;
+    /* transition: all .5s; */
+}
+
+.msg.on .ust {
+    border-color: white;
+}
+
+.msg.on {
+    height: 400px;
+    width: 275px;
+    right: 58px;
+    flex-direction: column;
+    cursor: auto;
+    background-size: 25%;
+    background-image: url(/assets/img/chatbg.png);
+}
+
+.msg > .head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    z-index: 5;
+    /* height: 65px; */
+    padding: 11px;
+    /* background: #efeff1; */
+}
+
+.msg .from + .from:after {
+    border: none;
+}
+
+.msgp.from, .msgp.to {
+    display: flex;
+    margin-top: 10px;
+    position: relative;
+}
+
+.msgp.from+.from, .msgp.to+.to {
+    margin-top: 3px;
+}
+/*
+.to:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -2px;
+  right: -38px;
+  width: 10px;
+  height: 20px;
+  background: white;
+  border-bottom-left-radius: 10px;
+  -webkit-transform: translate(-30px, -2px);
+}
+.to + .to:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -2px;
+  right: -7px;
+  height: 20px;
+  border-right: 20px solid #fcfcfc;
+  border-bottom-left-radius: 16px 14px;
+  -webkit-transform: translate(0, -2px);
+}
+.from + .from:before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  bottom: -2px;
+  left: -7px;
+  height: 20px;
+  border-left: 20px solid #0391fd;
+  border-bottom-right-radius: 16px 14px;
+  -webkit-transform: translate(0, -2px);
+}
+.from:after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  bottom: -2px;
+  left: 22px;
+  width: 10px;
+  height: 20px;
+  background: #fefeff;
+  border-bottom-right-radius: 10px;
+  -webkit-transform: translate(-30px, -2px);
+}*/
+.msg.on .chatm, .msg.on .type {
+    display: block;
+}
+.msg .txt span {
+    z-index: 3;
+    position: relative;
+}
+.msg.on > .head {
+    /* background: white; */
+}
+.msg.on > .head {
+    padding: 8px 11px;
+    background-color: white;
+    border-bottom: 1px solid #dbe4e8;
+}/*
+.chatm > *, .chatm:hover,
+ .chatm:focus {
+    visibility: visible;
+}*/
+
+
+
+/*
+.msganim {
+    animation: slideUp 1s ease;
+}
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}*/
+.msgday {
+    text-align: center;
+    margin: 10px;
+}
+
+.msgday > span {
+    color: white;
+    background: #abbcc5;
+    padding: 2px 5px;
+    font-size: 12;
+    border-radius: 4px;
+    /* letter-spacing: .3px; */
+    /* opacity: .5; */
+}
+.msg .file {
+    max-width: 80%;
+    max-height: 200px;
+    border-radius: 10px;
+    padding: 4px;
+    display: inline-block;
+    position: relative;
+    margin: 0 2px;
+    box-shadow: 0 1px 1px #ddd;
+}
+
+.msg .to .file {
+    background-color: #fcfcfc;
+    margin-left: auto;
+}
+
+.msg .from img {
+    background-color: #0391fd;
+    color: #ffffff;
+}
+.msg .to .time {
+    position: absolute;
+    right: 100%;
+    bottom: 0;
+    padding-right: 5px;
+}
+
+.msg .from .time {
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    padding-left: 5px;
+    padding-right: 0;
+}
+.maxw1 {
+    max-width: 100%;
+}
+.msg .to .time, .msg .from .time {
+    font-size: 11px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s;
+    cursor: default;
+}
+
+.msg .to:hover .time, .msg .from:hover .time {
+    visibility: visible;
+    opacity: 1;
+}
+.msg .fc {
+    height: 188px;
+    width: 112px;
+}
+.msg .from .file {
+    background-color: #0391fd;
+}
