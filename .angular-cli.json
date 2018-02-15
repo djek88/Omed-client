@@ -29,7 +29,7 @@
         "../node_modules/jquery/dist/jquery.min.js",
         "./assets/js/omed_tag.js",
         "./assets/js/readMoreFade.js",
-        "./assets/js/stickykit.js",
+        "../node_modules/sticky-kit/dist/sticky-kit.min.js",
         "./assets/js/autogrow.js",
         "./assets/js/b_dropdown.js",
         "./assets/js/b_transitions.js",

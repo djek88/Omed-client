@@ -12,9 +12,9 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $('.st').stk({
-        parent: '#omed',
-        offset_top: 60
+    $('.st').stick_in_parent({
+      parent: 'body',
+      offset_top: 60
     });
   }
 

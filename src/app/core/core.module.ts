@@ -2,18 +2,18 @@ import {
   ModuleWithProviders, NgModule,
   Optional, SkipSelf }      from '@angular/core';
 import { CommonModule }     from '@angular/common';
-import { NgbModule }        from '@ng-bootstrap/ng-bootstrap';
-
+//import { NgbModule }        from '@ng-bootstrap/ng-bootstrap';
 import { SDKBrowserModule }     from '../shared/sdk/index';
+
+import { CookieService }        from 'ngx-cookie-service';
 import { TextMasksService }     from './text-masks.service';
 import { FormUtilitiesService } from './form-utilities.service';
-import { CookieService }        from 'ngx-cookie-service';
 
 @NgModule({
   imports: [
     CommonModule,
+    //NgbModule.forRoot(),
     SDKBrowserModule.forRoot(),
-    NgbModule.forRoot()
   ],
   declarations: [],
   providers: [
