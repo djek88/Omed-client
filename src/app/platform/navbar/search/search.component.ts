@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 declare var $: any;
 
 @Component({
-  selector: 'omed-navbar-search',
-  templateUrl: './navbar-search.component.html',
-  styleUrls: ['./navbar-search.component.css']
+  selector: 'omed-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class NavbarSearchComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
   constructor() { }
   // what if need to disable event listeners?! In case when componente recreates many times...

@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 declare var $ :any;
 
 @Component({
-  selector: 'omed-home-notification',
-  templateUrl: './home-notification.component.html',
-  styleUrls: ['./home-notification.component.css']
+  selector: 'omed-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.css']
 })
-export class HomeNotificationComponent implements OnInit {
+export class NotificationComponent implements OnInit {
 
   constructor() { }
 

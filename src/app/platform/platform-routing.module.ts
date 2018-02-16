@@ -5,6 +5,7 @@ import { AuthGuard, ApprovedGuard } from '../login';
 
 import { PlatformComponent }       from './platform.component';
 import { PlatformLayoutComponent } from './platform-layout/platform-layout.component';
+
 import { HomeComponent }           from './home/home.component';
 import { ProfileComponent }        from './profile/profile.component';
 
