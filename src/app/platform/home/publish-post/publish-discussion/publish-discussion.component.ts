@@ -12,11 +12,6 @@ export class PublishDiscussionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $('textarea').on('keyup', function(){
-        $(this).val($(this).val().replace(/\n\s*\n/g, '\n'));
-        $(this).val($(this).val().replace(/  +/g, ' '));
-    });
-
     $(".check").on('click', function() {
         $(this).toggleClass('true');
     });

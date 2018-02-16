@@ -1731,7 +1731,7 @@ li {
 .tabsc {
   position: relative;
   padding-top: 5px;
-  display: none;
+  /*display: none;*/
 }
 
 .tabs>ul>li:hover {

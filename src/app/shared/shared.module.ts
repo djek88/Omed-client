@@ -5,9 +5,10 @@ import { TextMaskModule }                   from 'angular2-text-mask';
 //import { NgbModule }                        from '@ng-bootstrap/ng-bootstrap';
 //import { FileUploadModule }                 from 'ng2-file-upload';
 
-import { CapitalizeFirstPipe }       from './capitalize-first.pipe';
-import { PostDescriptionPipe }       from './post-description.pipe';
-import { TextareaAutogrowDirective } from './textarea-autogrow.directive';
+import { CapitalizeFirstPipe }              from './capitalize-first.pipe';
+import { PostDescriptionPipe }              from './post-description.pipe';
+import { TextareaAutogrowDirective }        from './textarea-autogrow.directive';
+import { ValidatePostDescriptionDirective } from './validate-post-description.directive';
 
 @NgModule({
   imports: [
@@ -16,12 +17,14 @@ import { TextareaAutogrowDirective } from './textarea-autogrow.directive';
   declarations: [
     CapitalizeFirstPipe,
     PostDescriptionPipe,
-    TextareaAutogrowDirective
+    TextareaAutogrowDirective,
+    ValidatePostDescriptionDirective
   ],
   exports: [
     CapitalizeFirstPipe,
     PostDescriptionPipe,
     TextareaAutogrowDirective,
+    ValidatePostDescriptionDirective,
 
     CommonModule,
     FormsModule,

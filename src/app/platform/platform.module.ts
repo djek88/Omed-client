@@ -28,6 +28,7 @@ import { ProfileInfoComponent }          from './profile-info/profile-info.compo
 import { HomeComponent }                 from './home/home.component';
 import { HomeNotificationComponent }     from './home/home-notification/home-notification.component';
 import { PublishPostComponent }          from './home/publish-post/publish-post.component';
+import { PublishPostService }            from './home/publish-post/shared/publish-post.service';
 import { PublishDiscussionComponent }    from './home/publish-post/publish-discussion/publish-discussion.component';
 import { PublishMedCaseComponent }       from './home/publish-post/publish-med-case/publish-med-case.component';
 import { PublishListingComponent }       from './home/publish-post/publish-listing/publish-listing.component';
@@ -73,6 +74,9 @@ import { ProfileComponent }              from './profile/profile.component';
     PublishDocumentComponent,
 
     ProfileComponent,
+  ],
+  providers: [
+    PublishPostService
   ]
 })
 export class PlatformModule { }

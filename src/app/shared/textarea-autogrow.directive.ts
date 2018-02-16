@@ -1,10 +1,7 @@
 import {Directive, ElementRef, HostListener} from "@angular/core";
 
 @Directive({
-  selector: '[omedTextareaAutogrow]',
-  host: {
-    '(input)': 'setHeight()'
-  }
+  selector: '[omedTextareaAutogrow]'
 })
 export class TextareaAutogrowDirective {
   @HostListener('input', ['$event.target'])

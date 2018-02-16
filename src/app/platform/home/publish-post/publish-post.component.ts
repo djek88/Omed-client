@@ -8,19 +8,12 @@ declare var $: any, jQuery: any;
   styleUrls: ['./publish-post.component.css']
 })
 export class PublishPostComponent implements OnInit {
+  postType: number = 1;
 
   constructor() { }
 
   ngOnInit() {
-    $('.bpx > li').on('click', function() {
-        $('.bpx > li').removeClass('active');
-        $(this).addClass('active')
-        $('.tabsc').hide();
-        var activeTab = $(this).attr('link');
-        $(activeTab).show();
-        return false;
-    });
-
+    // have been commented in the initial stage
     /*$("label.cb").on('click', function() { // cb stands for Checkbox
         var parent = $(this).closest('div');
         $('label.cb', parent).removeClass('ed'); // ed means enabled
