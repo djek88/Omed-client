@@ -27,8 +27,8 @@ export class ValidatePostDescriptionDirective implements OnInit, OnDestroy {
   ngOnInit() {
     this.postDescription = new Subject<string>();
     this.subscription = this.postDescription
-      .debounceTime(400)
-      .distinctUntilChanged()
+      //.debounceTime(400)
+      //.distinctUntilChanged()
       .subscribe(value => {
         this.el.value = this.postDescriptionPipe.transform(value);
       });

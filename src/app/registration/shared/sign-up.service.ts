@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
 
 import { Account, MedUser,
   AccountApi, MedUserApi } from '../../shared/sdk';
-
-import 'rxjs/add/operator/mergeMap';
 
 import { environment } from '../../../environments/environment';
 

@@ -3,15 +3,14 @@ import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/r
 
 import { Observable } from 'rxjs/Observable';
 
-import { MedUser, AccountApi, LoopBackAuth } from '../../shared/sdk';
+import { MedUser } from '../../shared/sdk';
+import { AuthService } from '../../login';
 
 @Injectable()
 export class MedUserByAuthResolver implements Resolve<MedUser>{
-  constructor(
-    private accountApi: AccountApi,
-    private auth: LoopBackAuth) { }
+  constructor(private authService: AuthService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MedUser> {
-    return this.accountApi.getUser(this.auth.getCurrentUserId());
+    return this.authService.getCurrentMedUser();
   }
 }
