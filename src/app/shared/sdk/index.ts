@@ -73,6 +73,8 @@ import { PoolApi } from './services/custom/Pool';
 import { AnswerApi } from './services/custom/Answer';
 import { VoteApi } from './services/custom/Vote';
 import { MedUserMedDocumentApi } from './services/custom/MedUserMedDocument';
+import { PostImageApi } from './services/custom/PostImage';
+import { PostFileApi } from './services/custom/PostFile';
 import { AdditionalApi } from './services/custom/Additional';
 /**
 * @module SDKBrowserModule
@@ -129,6 +131,8 @@ export class SDKBrowserModule {
         AnswerApi,
         VoteApi,
         MedUserMedDocumentApi,
+        PostImageApi,
+        PostFileApi,
         AdditionalApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },

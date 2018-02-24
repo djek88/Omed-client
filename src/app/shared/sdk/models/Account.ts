@@ -4,6 +4,7 @@ declare var Object: any;
 export interface AccountInterface {
   "isAdmin"?: boolean;
   "suspended"?: boolean;
+  "username"?: string;
   "email": string;
   "emailVerified"?: boolean;
   "id"?: any;
@@ -19,6 +20,7 @@ export interface AccountInterface {
 export class Account implements AccountInterface {
   "isAdmin": boolean;
   "suspended": boolean;
+  "username": string;
   "email": string;
   "emailVerified": boolean;
   "id": any;
@@ -71,6 +73,10 @@ export class Account implements AccountInterface {
           name: 'suspended',
           type: 'boolean',
           default: false
+        },
+        "username": {
+          name: 'username',
+          type: 'string'
         },
         "email": {
           name: 'email',

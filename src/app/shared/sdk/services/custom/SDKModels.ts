@@ -24,6 +24,8 @@ import { Pool } from '../../models/Pool';
 import { Answer } from '../../models/Answer';
 import { Vote } from '../../models/Vote';
 import { MedUserMedDocument } from '../../models/MedUserMedDocument';
+import { PostImage } from '../../models/PostImage';
+import { PostFile } from '../../models/PostFile';
 import { Additional } from '../../models/Additional';
 
 export interface Models { [name: string]: any }
@@ -56,6 +58,8 @@ export class SDKModels {
     Answer: Answer,
     Vote: Vote,
     MedUserMedDocument: MedUserMedDocument,
+    PostImage: PostImage,
+    PostFile: PostFile,
     Additional: Additional,
     
   };

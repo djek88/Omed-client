@@ -23,6 +23,8 @@ export * from './Pool';
 export * from './Answer';
 export * from './Vote';
 export * from './MedUserMedDocument';
+export * from './PostImage';
+export * from './PostFile';
 export * from './Additional';
 export * from './SDKModels';
 export * from './logger.service';

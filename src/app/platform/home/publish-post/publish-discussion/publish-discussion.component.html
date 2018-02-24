@@ -7,7 +7,12 @@
 
   <div class="tabsf">
     <ul>
-      <li><span><img class="icn" data-multiple="true" src="assets/icons/picture-2.svg"></span></li>
+      <li>
+        <span (click)="file.click();">
+          <img class="icn" data-multiple="true" src="assets/icons/picture-2.svg">
+        </span>
+        <input type="file" multiple style="display: none;" (change)="onFilesChange($event)" #file>
+      </li>
     </ul>
     <input type="checkbox" id="incog1" formControlName="incognito">
     <label for="incog1" class="incog check" [class.true]="discussionForm.value.incognito">
@@ -63,7 +68,7 @@
           </li>
         </ul>
       </div>
-      <button type="submit" class="btn t1" [disabled]="formSubmitted">Publish</button>
+      <button type="submit" class="btn t1" [disabled]="formDisabled">Publish</button>
     </div>
   </div>
 </form>

@@ -9,6 +9,8 @@ declare var Object: any;
 export interface PostInterface {
   "incognito"?: boolean;
   "approved"?: boolean;
+  "images"?: Array<any>;
+  "files"?: Array<any>;
   "id"?: any;
   "authorId"?: any;
   "authorType"?: string;
@@ -26,6 +28,8 @@ export interface PostInterface {
 export class Post implements PostInterface {
   "incognito": boolean;
   "approved": boolean;
+  "images": Array<any>;
+  "files": Array<any>;
   "id": any;
   "authorId": any;
   "authorType": string;
@@ -80,6 +84,16 @@ export class Post implements PostInterface {
           name: 'approved',
           type: 'boolean',
           default: true
+        },
+        "images": {
+          name: 'images',
+          type: 'Array&lt;any&gt;',
+          default: <any>[]
+        },
+        "files": {
+          name: 'files',
+          type: 'Array&lt;any&gt;',
+          default: <any>[]
         },
         "id": {
           name: 'id',

@@ -1,11 +1,9 @@
-import { Component, OnInit }                                   from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit }                  from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { PublishPostService } from '../shared/publish-post.service';
 
-import { Post, Discussion } from '../../../../shared/sdk';
-
-declare var $: any, jQuery: any;
+import { AdditionalApi } from '../../../../shared/sdk';
 
 @Component({
   selector: 'omed-publish-discussion',
@@ -14,37 +12,76 @@ declare var $: any, jQuery: any;
 })
 export class PublishDiscussionComponent implements OnInit {
   discussionForm: FormGroup;
+  formDisabled: boolean = true;
 
-  formSubmitted: boolean = false;
+  private postImageConfigurations: any;
 
   constructor(
+    private additionalApi: AdditionalApi,
     private fb: FormBuilder,
     private publishPostService: PublishPostService
   ) {
     this.createForm();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.additionalApi.postImageConfigurations().subscribe((results) => {
+      this.postImageConfigurations = results;
+      this.formDisabled = false;
+    });
+  }
 
   onSubmit() {
     if (this.discussionForm.invalid) return;
 
-    this.formSubmitted = true;
+    this.formDisabled = true;
 
     const formModel = this.discussionForm.value;
 
-    this.publishPostService.publishDiscussion(formModel.text, formModel.incognito)
-      .subscribe((result) => {
-        this.formSubmitted = false;
+    this.publishPostService.publishDiscussion(
+      formModel.text,
+      formModel.incognito,
+      formModel.images
+    ).subscribe((result) => {
+        this.formDisabled = false;
 
-        console.log(result);
+        this.discussionForm.reset();
       });
+  }
+
+  onFilesChange(event) {
+    const files = event.target.files;
+
+    if (files && files.length > 0) {
+      Object.keys(files).forEach((key) => {
+        if (this.discussionForm.controls.images.value.length === 10) return;
+
+        const file = files[key];
+        if (this.validateFile(file)) {
+          this.discussionForm.controls.images.value.push(file);
+        }
+      });
+    }
   }
 
   private createForm() {
     this.discussionForm = this.fb.group({
       text: ['', Validators.required],
-      incognito: false
+      incognito: false,
+      images: [[]]
     });
+  }
+
+  private validateFile(file: any) {
+    const maxFileSize = this.postImageConfigurations.maxSize;
+    if (file.size < maxFileSize) return false;
+
+    const supportedTypes = [];
+    for (let key in this.postImageConfigurations.supportedTypes) {
+      supportedTypes.push(this.postImageConfigurations.supportedTypes[key]);
+    }
+    if (supportedTypes.indexOf(file.type) === -1) return false;
+
+    return true;
   }
 }
