@@ -7,8 +7,8 @@ import 'rxjs/add/operator/mergeMap';
 import "rxjs/add/observable/of";
 
 import { AuthService } from '../../../../login';
-import { Post, Discussion,
-  MedUserApi, DiscussionApi, PostApi } from '../../../../shared/sdk';
+import { Post, Discussion, MedCase, Pool,
+  MedUserApi, PostApi, DiscussionApi, MedCaseApi, PoolApi } from '../../../../shared/sdk';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -19,8 +19,10 @@ export class PublishPostService {
     private http: Http,
     private authService: AuthService,
     private medUserApi: MedUserApi,
+    private postApi: PostApi,
     private discussionApi: DiscussionApi,
-    private postApi: PostApi
+    private medCaseApi: MedCaseApi,
+    private poolApi: PoolApi
   ) { }
 
   publishDiscussion(text: string, incognito: boolean, images: any[]): Observable<Post> {
@@ -45,6 +47,50 @@ export class PublishPostService {
       .flatMap(() => this.postApi.findById(post.id));
   }
 
+  publishMedCase(medCase: MedCase, incognito: boolean, images: any[]): Observable<Post> {
+    let post = new Post({ incognito });
+
+    return this.medCaseApi.create(medCase)
+      .flatMap((result) => {
+        medCase.id = result.id;
+        return this.authService.getCurrentMedUser();
+      })
+      .flatMap((medUser) => {
+        post.authorId = medUser.id;
+        post.authorType = this.medUserApi.getModelName();
+        return this.medCaseApi.createPost(medCase.id, post);
+      })
+      .flatMap((result) => {
+        post = result;
+        return this.uploadPostImages(post.id, images);
+      })
+      .flatMap(() => this.createMedCasePools(medCase.id, medCase.pools))
+      .flatMap(() => this.postApi.findById(post.id));
+  }
+
+  createMedCasePools(medCaseId: string, pools: any[]): Observable<any> {
+    const requests = pools.map((pool) => {
+      return this.createMedCasePool(medCaseId, pool);
+    });
+
+    return requests.length ? forkJoin(requests) : Observable.of(null);
+  }
+
+  createMedCasePool(medCaseId: string, pool: any): Observable<any> {
+    return this.medCaseApi.createPools(medCaseId, pool)
+      .flatMap((result) => {
+        return this.createPoolAnswers(result.id, pool.answers);
+      });
+  }
+
+  createPoolAnswers(poolId: string, answers: any[]): Observable<any> {
+    const requests = answers.map((answer) => {
+      return this.poolApi.createAnswers(poolId, answer);
+    });
+
+    return forkJoin(requests);
+  }
+
   uploadPostImages(postId: string, images: any[]): Observable<any> {
     const url = `${environment.apiBaseUrl}/${environment.apiVersion}/Posts/${postId}/upload-image`;
     const headers = new Headers();
@@ -57,6 +103,6 @@ export class PublishPostService {
       return this.http.post(url, fd, { headers });
     });
 
-    return forkJoin(requests);
+    return requests.length ? forkJoin(requests) : Observable.of(null);
   }
 }

@@ -1988,7 +1988,8 @@ li {
   background: #ffe9ee;
 }
 
-.tabsc input[type="text"] {
+.tabsc input[type="text"],
+.tabsc input[type="number"] {
   width: 100%;
   color: #12425f;
   font-size: 13px;

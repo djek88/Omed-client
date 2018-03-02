@@ -32,7 +32,7 @@ export class PublishDiscussionComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.discussionForm.invalid) return;
+    if (this.discussionForm.invalid || this.formDisabled) return;
 
     this.formDisabled = true;
 
