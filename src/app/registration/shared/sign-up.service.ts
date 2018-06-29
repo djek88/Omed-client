@@ -37,7 +37,7 @@ export class SignUpService {
   ];
   private internDegrees: Degree[] = [
     { name: 'Intern 1 year', value: 'intern1' },
-    { name: 'Intern 2 year', value: 'intern2 '}
+    { name: 'Intern 2 year', value: 'intern2'}
   ];
   private residentDegrees: Degree[] = [
     { name: 'Resident 1 year', value: 'resident1'},

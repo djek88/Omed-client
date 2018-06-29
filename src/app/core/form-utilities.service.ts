@@ -36,6 +36,14 @@ export class FormUtilitiesService {
       correctedMonth = date.getMonth() + 1;
     }
 
-    return `${date.getFullYear()}-${correctedMonth}-${date.getDate()}`;
+    let correctedDay;
+    if (date.getDate() < 9) {
+      correctedDay = `0${date.getDate()}`;
+    } else {
+      correctedDay = date.getDate();
+    }
+
+
+    return `${date.getFullYear()}-${correctedMonth}-${correctedDay}`;
   }
 }

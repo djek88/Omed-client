@@ -8,7 +8,7 @@ declare var $: any, jQuery: any;
   styleUrls: ['./publish-post.component.css']
 })
 export class PublishPostComponent implements OnInit {
-  postType: number = 1;
+  postType: number = 2;
 
   constructor() { }
 
