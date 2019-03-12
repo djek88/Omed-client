@@ -1,13 +1,12 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
+import { Observable } from 'rxjs';
 
-import { Account, MedUser,
-  AccountApi, MedUserApi } from '../../shared/sdk';
+import { Account, MedUser, AccountApi, MedUserApi } from '../../shared/sdk';
 
 import { environment } from '../../../environments/environment';
+import { switchMap } from 'rxjs/operators';
 
 export interface Degree {
   name: string;
@@ -15,8 +14,8 @@ export interface Degree {
 }
 
 export interface DegreeGroups {
-  name: string,
-  degrees: Degree[]
+  name: string;
+  degrees: Degree[];
 }
 
 @Injectable()
@@ -69,13 +68,14 @@ export class SignUpService {
   ];
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private accountApi: AccountApi,
-    private medUserApi: MedUserApi) { }
+    private medUserApi: MedUserApi) {}
 
-  registrateFirstStep(account: Account, medUser: MedUser): Observable<Account> {
-    return this.medUserApi.create(medUser)
-      .flatMap((medUser: MedUser) => this.medUserApi.createAccount(medUser.id, account));
+  registrateFirstStep(account: Account, medUserToCreate: MedUser): Observable<Account> {
+    return this.medUserApi.create(medUserToCreate).pipe(
+      switchMap(medUser => this.medUserApi.createAccount(medUser.id, account))
+    );
   }
 
   registrateSecondStep(id, data): Observable<any> {
@@ -84,14 +84,15 @@ export class SignUpService {
 
   registrateThirdStep(id, data): Observable<any> {
     const url = `${environment.apiBaseUrl}/${environment.apiVersion}/MedUsers/${id}/upload-med-document`;
-    const headers = new Headers();
+    const headers = new HttpHeaders();
     this.medUserApi.authenticate(url, headers);
 
     const fd = new FormData();
     fd.append('file', data.file);
 
-    return this.http.post(url, fd, { headers })
-      .flatMap(() => this.medUserApi.patchAttributes(id, { moreProof: false }));
+    return this.http.post(url, fd, { headers }).pipe(
+      switchMap(() => this.medUserApi.patchAttributes(id, { moreProof: false }))
+    );
   }
 
   getTypes() {
@@ -148,9 +149,13 @@ export class SignUpService {
     const isResident = isStudent && residentDegrees.indexOf(user.degree) !== -1;
     const isDoctor = user.type === this.types[2];
 
-    if (isResident) return this.types[1];
-    if (isStudent) return this.types[0];
-    if (isDoctor) return this.types[2];
+    if (isResident) {
+      return this.types[1];
+    } else if (isStudent) {
+      return this.types[0];
+    } else if (isDoctor) {
+      return this.types[2];
+    }
   }
 
   private getDegreesValues(degrees: Degree[]) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $: any, jQuery: any;
+declare var $: any;
+declare var jQuery: any;
 
 @Component({
   selector: 'omed-publish-post',
@@ -8,7 +9,7 @@ declare var $: any, jQuery: any;
   styleUrls: ['./publish-post.component.css']
 })
 export class PublishPostComponent implements OnInit {
-  postType: number = 2;
+  postType = 2;
 
   constructor() { }
 

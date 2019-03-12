@@ -24,7 +24,9 @@ export class NotAuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   checkIsNotLogin(): boolean {
-    if (!this.authService.isLoggedIn()) return true;
+    if (!this.authService.isLoggedIn()) {
+      return true;
+    }
 
     this.router.navigate(['/home']);
     return false;

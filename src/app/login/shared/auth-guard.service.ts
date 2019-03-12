@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // absolute path with query params, anchor, etc
-    let url: string = state.url;
+    const url = state.url;
 
     return this.checkLogin(url);
   }
@@ -27,7 +27,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn()) return true;
+    if (this.authService.isLoggedIn()) {
+      return true;
+    }
 
     this.authService.redirectUrl = url;
 

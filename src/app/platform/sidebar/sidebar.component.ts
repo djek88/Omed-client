@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $ :any;
+declare var $: any;
 
 @Component({
   selector: 'omed-sidebar',
@@ -8,14 +8,10 @@ declare var $ :any;
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit() {
     $('.st').stick_in_parent({
       parent: 'body',
       offset_top: 60
     });
   }
-
 }

@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule }      from '@angular/core';
-import { Router }        from '@angular/router';
+import { NgModule } from '@angular/core';
+// import { Router } from '@angular/router';
 
-import { CoreModule }       from './core';
-import { LoginModule }      from './login'
-import { LandingModule }    from './landing/landing.module';
+import { CoreModule } from './core';
+import { LoginModule } from './login';
+import { LandingModule } from './landing/landing.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent }     from './app.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { AppComponent }     from './app.component';
 })
 export class AppModule {
   // Diagnostic only: inspect router configuration
-  /*constructor(router: Router) {
+  /* constructor(router: Router) {
     console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
-  }*/
+  } */
 }

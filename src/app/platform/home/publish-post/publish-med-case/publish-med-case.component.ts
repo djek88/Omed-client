@@ -1,15 +1,16 @@
-import { Component, OnInit }                  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 
-import { forkJoin }   from "rxjs/observable/forkJoin";
-import 'rxjs/add/operator/mergeMap';
+import { forkJoin } from 'rxjs';
+
 
 import { PublishPostService } from '../shared/publish-post.service';
 
 import { MedCase, Specialty,
   AdditionalApi, SpecialtyApi } from '../../../../shared/sdk';
 
-declare var $: any, jQuery: any;
+declare var $: any;
+declare var jQuery: any;
 
 @Component({
   selector: 'omed-publish-med-case',
@@ -19,7 +20,7 @@ declare var $: any, jQuery: any;
 export class PublishMedCaseComponent implements OnInit {
   medCaseForm: FormGroup;
   specialtyOpts: Specialty[];
-  formDisabled: boolean = true;
+  formDisabled = true;
 
   private postImageConfigurations: any;
 
@@ -45,21 +46,23 @@ export class PublishMedCaseComponent implements OnInit {
     });
 
     // switch for radio buttons
-    $("label.rd").on('click', function() {
-        var parent = $(this).closest('div');
-        $("label.rd", parent).addClass('dd');
+    $('label.rd').on('click', function() {
+        const parent = $(this).closest('div');
+        $('label.rd', parent).addClass('dd');
         $(this).removeClass('dd');
         $(this).addClass('sd');
     });
-    $(".rd").on('click', function() { // also work without this code
-        var parent = $(this).closest('.rcont');
-        $(".rd", parent).removeClass('true');
+    $('.rd').on('click', function() { // also work without this code
+        const parent = $(this).closest('.rcont');
+        $('.rd', parent).removeClass('true');
         $(this).addClass('true');
     });
   }
 
   onSubmit() {
-    if (this.medCaseForm.invalid || this.formDisabled) return;
+    if (this.medCaseForm.invalid || this.formDisabled) {
+      return;
+    }
 
     this.formDisabled = true;
 
@@ -98,7 +101,7 @@ export class PublishMedCaseComponent implements OnInit {
 
   get medCasePools(): FormArray {
     return this.medCaseForm.get('pools') as FormArray;
-  };
+  }
 
   addMedCasePool() {
     this.medCasePools.push(this.fb.group({
@@ -125,7 +128,9 @@ export class PublishMedCaseComponent implements OnInit {
   addPoolAnswer(index) {
     const poolAnswers = this.getPoolAnswers(index);
 
-    if (poolAnswers.length > 11) return;
+    if (poolAnswers.length > 11) {
+      return;
+    }
 
     const answer = this.fb.group({
       text: ''
@@ -144,7 +149,9 @@ export class PublishMedCaseComponent implements OnInit {
 
     if (files && files.length > 0) {
       Object.keys(files).forEach((key) => {
-        if (this.medCaseForm.controls.images.value.length === 10) return;
+        if (this.medCaseForm.controls.images.value.length === 10) {
+          return;
+        }
 
         const file = files[key];
         if (this.validateFile(file)) {
@@ -168,14 +175,14 @@ export class PublishMedCaseComponent implements OnInit {
   }
 
   private initializeSpecialtiesSelect() {
-    $(".tagfy").chosen({
+    $('.tagfy').chosen({
       disable_search_threshold: 5,
-      no_results_text: "Aucun résultat trouvé!",
+      no_results_text: 'Aucun résultat trouvé!',
       inherit_select_classes: true,
       max_selected_options: 5,
       single_backstroke_delete: false,
       display_selected_options: false,
-      width: "100%"
+      width: '100%'
     }).change((event, value) => {
       const specialties = this.medCaseForm.controls.specialties.value;
 
@@ -190,23 +197,28 @@ export class PublishMedCaseComponent implements OnInit {
 
   private resetSpecialtiesSelect() {
     $('.tagfy').val([]);
-    $(".tagfy").trigger("chosen:updated");
+    $('.tagfy').trigger('chosen:updated');
   }
 
   private resetSexRadioButtons() {
-    $("label.rd.dd").removeClass('dd');
+    $('label.rd.dd').removeClass('dd');
   }
 
   private validateFile(file: any) {
     const maxFileSize = this.postImageConfigurations.maxSize;
-    if (file.size < maxFileSize) return false;
+    if (file.size < maxFileSize) {
+      return false;
+    }
 
     const supportedTypes = [];
-    for (let key in this.postImageConfigurations.supportedTypes) {
-      supportedTypes.push(this.postImageConfigurations.supportedTypes[key]);
+    for (const key in this.postImageConfigurations.supportedTypes) {
+      if (this.postImageConfigurations.supportedTypes.hasOwnProperty(key)) {
+        supportedTypes.push(this.postImageConfigurations.supportedTypes[key]);
+      }
     }
-    if (supportedTypes.indexOf(file.type) === -1) return false;
 
-    return true;
+    const isSupportedType = supportedTypes.indexOf(file.type) !== -1;
+
+    return isSupportedType;
   }
 }

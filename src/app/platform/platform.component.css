@@ -453,7 +453,7 @@ ul.nav {
 
 .nav .dropdown-menu {
   width: 320px;
-  */ border-top-right-radius: 0;
+  border-top-right-radius: 0;
   border-top-right-radius: 0;
   right: 0!important;
   left: inherit!important;

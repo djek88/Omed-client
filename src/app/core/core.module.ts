@@ -1,18 +1,16 @@
-import {
-  ModuleWithProviders, NgModule,
-  Optional, SkipSelf }      from '@angular/core';
-import { CommonModule }     from '@angular/common';
-//import { NgbModule }        from '@ng-bootstrap/ng-bootstrap';
-import { SDKBrowserModule }     from '../shared/sdk/index';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { CommonModule } from '@angular/common';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SDKBrowserModule } from '../shared/sdk/index';
 
-import { CookieService }        from 'ngx-cookie-service';
-import { TextMasksService }     from './text-masks.service';
+import { CookieService } from 'ngx-cookie-service';
+import { TextMasksService } from './text-masks.service';
 import { FormUtilitiesService } from './form-utilities.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    //NgbModule.forRoot(),
+    // NgbModule.forRoot(),
     SDKBrowserModule.forRoot(),
   ],
   declarations: [],
@@ -23,7 +21,8 @@ import { FormUtilitiesService } from './form-utilities.service';
   ]
 })
 export class CoreModule {
-  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    /* Prevent reimport of the CoreModule */
     if (parentModule) {
       throw new Error(
         'CoreModule is already loaded. Import it in the AppModule only');

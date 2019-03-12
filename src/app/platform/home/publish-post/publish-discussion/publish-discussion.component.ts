@@ -1,4 +1,4 @@
-import { Component, OnInit }                  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { PublishPostService } from '../shared/publish-post.service';
@@ -12,7 +12,7 @@ import { AdditionalApi } from '../../../../shared/sdk';
 })
 export class PublishDiscussionComponent implements OnInit {
   discussionForm: FormGroup;
-  formDisabled: boolean = true;
+  formDisabled = true;
 
   private postImageConfigurations: any;
 
@@ -32,7 +32,9 @@ export class PublishDiscussionComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.discussionForm.invalid || this.formDisabled) return;
+    if (this.discussionForm.invalid || this.formDisabled) {
+      return;
+    }
 
     this.formDisabled = true;
 
@@ -54,7 +56,9 @@ export class PublishDiscussionComponent implements OnInit {
 
     if (files && files.length > 0) {
       Object.keys(files).forEach((key) => {
-        if (this.discussionForm.controls.images.value.length === 10) return;
+        if (this.discussionForm.controls.images.value.length === 10) {
+          return;
+        }
 
         const file = files[key];
         if (this.validateFile(file)) {
@@ -74,13 +78,20 @@ export class PublishDiscussionComponent implements OnInit {
 
   private validateFile(file: any) {
     const maxFileSize = this.postImageConfigurations.maxSize;
-    if (file.size < maxFileSize) return false;
+    if (file.size < maxFileSize) {
+      return false;
+    }
 
     const supportedTypes = [];
-    for (let key in this.postImageConfigurations.supportedTypes) {
-      supportedTypes.push(this.postImageConfigurations.supportedTypes[key]);
+    for (const key in this.postImageConfigurations.supportedTypes) {
+      if (this.postImageConfigurations.supportedTypes.hasOwnProperty(key)) {
+        supportedTypes.push(this.postImageConfigurations.supportedTypes[key]);
+      }
     }
-    if (supportedTypes.indexOf(file.type) === -1) return false;
+
+    if (supportedTypes.indexOf(file.type) === -1) {
+      return false;
+    }
 
     return true;
   }

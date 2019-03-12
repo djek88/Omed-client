@@ -1,12 +1,11 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard, NotAuthGuard,
-  ApprovedGuard, NotApprovedGuard } from './shared';
-import { LoginComponent }           from './login.component';
-import { SignInComponent }          from './sign-in/sign-in.component';
-import { ResetPasswordComponent }   from './reset-password/reset-password.component';
-import { ChangePasswordComponent }  from './change-password/change-password.component';
+import { AuthGuard, NotAuthGuard, ApprovedGuard, NotApprovedGuard } from './shared';
+import { LoginComponent } from './login.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {

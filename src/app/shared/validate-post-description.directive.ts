@@ -1,12 +1,8 @@
-import { Directive, HostListener, ElementRef, OnInit, OnDestroy } from "@angular/core";
+import { Directive, HostListener, ElementRef, OnInit, OnDestroy } from '@angular/core';
 
-import { Subject }       from 'rxjs/Subject';
-import { ISubscription } from "rxjs/Subscription";
+import { Subject, Subscription } from 'rxjs';
 
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-
-import { PostDescriptionPipe } from "./post-description.pipe";
+import { PostDescriptionPipe } from './post-description.pipe';
 
 @Directive({
   selector: '[omedValidatePostDescription]',
@@ -15,7 +11,7 @@ import { PostDescriptionPipe } from "./post-description.pipe";
 export class ValidatePostDescriptionDirective implements OnInit, OnDestroy {
   postDescription: Subject<string>;
   private el: HTMLInputElement;
-  private subscription: ISubscription;
+  private subscription: Subscription;
 
   constructor(
     private elementRef: ElementRef,
@@ -27,8 +23,8 @@ export class ValidatePostDescriptionDirective implements OnInit, OnDestroy {
   ngOnInit() {
     this.postDescription = new Subject<string>();
     this.subscription = this.postDescription
-      //.debounceTime(400)
-      //.distinctUntilChanged()
+      // .debounceTime(400)
+      // .distinctUntilChanged()
       .subscribe(value => {
         this.el.value = this.postDescriptionPipe.transform(value);
       });
@@ -36,12 +32,12 @@ export class ValidatePostDescriptionDirective implements OnInit, OnDestroy {
     this.postDescription.next(this.el.value);
   }
 
-  @HostListener("keyup", ["$event.target.value"])
+  @HostListener('keyup', ['$event.target.value'])
   onKeyup(value) {
     this.postDescription.next(value);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 }

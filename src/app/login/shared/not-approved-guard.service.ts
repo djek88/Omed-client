@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot,
   CanActivate, CanActivateChild } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/take';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 
@@ -23,14 +23,16 @@ export class NotApprovedGuard implements CanActivate, CanActivateChild {
   }
 
   checkApproval(): Observable<boolean> {
-    return this.authService.getCurrentMedUser()
-      .take(1)
-      .map((medUser) => {
-        if (!medUser.approved) return true;
+    return this.authService.getCurrentMedUser().pipe(
+      take(1),
+      map((medUser) => {
+        if (!medUser.approved) {
+          return true;
+        }
 
         this.router.navigate(['/home']);
         return false;
-      });
-    
+      })
+    );
   }
 }

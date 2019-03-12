@@ -1,9 +1,9 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NotAuthGuard }     from '../login';
+import { NotAuthGuard } from '../login';
 import { LandingComponent } from './landing.component';
-import { HomeComponent }    from './home/home.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -23,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LandingRoutingModule { }
+export class LandingRoutingModule {}

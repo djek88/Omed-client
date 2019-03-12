@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $: any, jQuery: any;
+declare var $: any;
+declare var jQuery: any;
 
 @Component({
   selector: 'omed-publish-listing',
@@ -8,9 +9,6 @@ declare var $: any, jQuery: any;
   styleUrls: ['./publish-listing.component.css']
 })
 export class PublishListingComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit() {
     // at this moment already initialized in publish-med-case component
     /*$(".tagfy").chosen({
@@ -23,5 +21,4 @@ export class PublishListingComponent implements OnInit {
       width: "100%"
     });*/
   }
-
 }

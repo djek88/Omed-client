@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
@@ -24,8 +24,8 @@ const routes: Routes = [
       routes,
       {
         enableTracing: false, // <-- debugging purposes only
-        //preloadingStrategy: PreloadAllModules
-        //preloadingStrategy: SelectivePreloadingStrategy
+        // preloadingStrategy: PreloadAllModules
+        // preloadingStrategy: SelectivePreloadingStrategy
       }
     )
   ],

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/take';
+import { Observable } from 'rxjs';
+import { take, map } from 'rxjs/operators';
 
 import { AuthService } from '../../login';
 
@@ -14,9 +14,9 @@ export class ThirdStepGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.getCurrentMedUser()
-      .take(1)
-      .map((medUser) => {
+    return this.authService.getCurrentMedUser().pipe(
+      take(1),
+      map((medUser) => {
         if (!medUser.cityId) {
           this.router.navigate(['/registration/step-2']);
           return false;
@@ -26,6 +26,7 @@ export class ThirdStepGuard implements CanActivate {
         } else {
           return true;
         }
-      });
+      })
+    );
   }
 }

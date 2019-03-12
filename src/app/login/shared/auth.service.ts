@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router }     from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
+import { Observable } from 'rxjs';
 
 import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../../shared/sdk';
 import { CookieService } from 'ngx-cookie-service';
+import { switchMap, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -24,9 +23,10 @@ export class AuthService {
   }
 
   login(credentials: any, rememeberMe?: boolean) {
-    return this.accountApi.login(credentials, null, rememeberMe)
-      .flatMap(() => this.getCurrentUserData())
-      .map(() => this.auth.getToken());
+    return this.accountApi.login(credentials, null, rememeberMe).pipe(
+      switchMap(() => this.getCurrentUserData()),
+      map(() => this.auth.getToken)
+    );
 
     /*let loginRes;
 
@@ -79,7 +79,7 @@ export class AuthService {
   getLastSignedInUserData() {
     try {
       return JSON.parse(this.cookieService.get('lastSignedInUserData'));
-    } catch(err) {
+    } catch (err) {
       return null;
     }
   }
@@ -97,17 +97,15 @@ export class AuthService {
   }
 
   getCurrentMedUser(): Observable<MedUser> {
-    return this.getCurrentUserData()
-      .map((account: Account) => {
-        return account.user;
-      });
+    return this.getCurrentUserData().pipe(
+      map(account => account.user)
+    );
   }
 
   getCurrentUserData(): Observable<Account> {
     return this.accountApi.getCurrent({include: 'user'})
-      .map((account: Account) => {
-        this.auth.setUser(account);
-        return account;
-      });
+      .pipe(
+        tap((account => this.auth.setUser(account)))
+      );
   }
 }

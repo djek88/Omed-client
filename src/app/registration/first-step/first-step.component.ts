@@ -1,13 +1,12 @@
-import { Component, OnInit }                  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute }             from '@angular/router';
-
-import 'rxjs/add/operator/mergeMap';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Account, MedUser } from '../../shared/sdk';
-import { AuthService }      from '../../login';
-import { SignUpService }    from '../shared/sign-up.service';
+import { AuthService } from '../../login';
+import { SignUpService } from '../shared/sign-up.service';
 import { TextMasksService } from '../../core';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'omed-first-step',
@@ -38,7 +37,9 @@ export class FirstStepComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    if (this.signUpForm.invalid) return this.showTips();
+    if (this.signUpForm.invalid) {
+      return this.showTips();
+    }
 
     this.formSubmitted = true;
 
@@ -46,17 +47,17 @@ export class FirstStepComponent implements OnInit {
     const account = this.prepareAccountData();
 
     this.signUpService.registrateFirstStep(account, medUser)
-      .flatMap(() => this.authService.login(account))
-      .subscribe(() => {
-        this.router.navigate(['step-2'], { relativeTo: this.route.parent })
-      });
+      .pipe(
+        switchMap(() => this.authService.login(account))
+      )
+      .subscribe(() => this.router.navigate(['step-2'], { relativeTo: this.route.parent }));
   }
 
   private prepareMedUserData() {
     const formModel = this.signUpForm.value;
 
     let medUserType = formModel.type;
-    let medUserDegree = this.signUpService.getDefaultDegreeFor(medUserType);
+    const medUserDegree = this.signUpService.getDefaultDegreeFor(medUserType);
 
     // if selected "Resident"
     if (medUserType === this.types[1]) {
@@ -83,11 +84,11 @@ export class FirstStepComponent implements OnInit {
   private showTips() {
     const ctrls = this.signUpForm.controls;
 
-    for (let control in ctrls) {
+    for (const control in ctrls) {
       if (ctrls.hasOwnProperty(control)) {
         ctrls[control].markAsDirty();
         ctrls[control].markAsTouched();
-      } 
+      }
     }
   }
 

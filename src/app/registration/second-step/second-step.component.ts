@@ -1,10 +1,10 @@
-import { Component, OnInit }                  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { ActivatedRoute, Router }             from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { Lists }                       from './second-step-lists-resolver.service';
+import { Lists } from './second-step-lists-resolver.service';
 import { SignUpService, DegreeGroups } from '../shared/sign-up.service';
-import { FormUtilitiesService }        from '../../core';
+import { FormUtilitiesService } from '../../core';
 
 import { MedUser, City, Specialty, University, Hospital } from '../../shared/sdk';
 
@@ -24,7 +24,7 @@ export class SecondStepComponent implements OnInit {
   hospitalOpts: Hospital[];
   degreeGroups: DegreeGroups[];
 
-  formSubmitted: boolean = false;
+  formSubmitted = false;
 
   private medUser: MedUser;
   private hospitals: Hospital[];
@@ -126,7 +126,9 @@ export class SecondStepComponent implements OnInit {
   private configureControlsByDegree(degree?: string) {
     this.resetDisableControls();
 
-    if (!degree || !this.medUser) return;
+    if (!degree || !this.medUser) {
+      return;
+    }
 
     const userType = this.signUpService.getUserType(this.medUser);
     const types = this.signUpService.getTypes();

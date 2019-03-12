@@ -8,7 +8,7 @@ import {
 declare var Object: any;
 export interface VoteInterface {
   "id"?: any;
-  "answerId"?: string;
+  "answerId"?: any;
   "poolId"?: any;
   "authorId"?: any;
   "medUserId"?: any;
@@ -21,7 +21,7 @@ export interface VoteInterface {
 
 export class Vote implements VoteInterface {
   "id": any;
-  "answerId": string;
+  "answerId": any;
   "poolId": any;
   "authorId": any;
   "medUserId": any;
@@ -69,7 +69,7 @@ export class Vote implements VoteInterface {
         },
         "answerId": {
           name: 'answerId',
-          type: 'string'
+          type: 'any'
         },
         "poolId": {
           name: 'poolId',

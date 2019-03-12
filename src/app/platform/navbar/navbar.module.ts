@@ -1,12 +1,12 @@
-import { NgModule }     from '@angular/core';
+import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 
-import { NavbarComponent }         from './navbar.component';
-import { SearchComponent }         from './search/search.component';
+import { NavbarComponent } from './navbar.component';
+import { SearchComponent } from './search/search.component';
 import { FriendRequestsComponent } from './friend-requests/friend-requests.component';
-import { MessagesComponent }       from './messages/messages.component';
-import { NotificationsComponent }  from './notifications/notifications.component';
-import { AccountComponent }        from './account/account.component';
+import { MessagesComponent } from './messages/messages.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   imports: [
@@ -24,4 +24,4 @@ import { AccountComponent }        from './account/account.component';
     NavbarComponent
   ],
 })
-export class NavbarModule { }
+export class NavbarModule {}

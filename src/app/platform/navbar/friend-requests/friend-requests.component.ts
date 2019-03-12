@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $ :any;
+declare var $: any;
 
 @Component({
   selector: 'omed-friend-requests',
@@ -8,9 +8,6 @@ declare var $ :any;
   styleUrls: ['./friend-requests.component.css']
 })
 export class FriendRequestsComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit() {
     $('#myDropdown').on('show.bs.dropdown', () => {
 

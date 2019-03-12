@@ -1,13 +1,13 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard, ApprovedGuard } from '../login';
 
-import { PlatformComponent }       from './platform.component';
+import { PlatformComponent } from './platform.component';
 import { PlatformLayoutComponent } from './platform-layout/platform-layout.component';
 
-import { HomeComponent }           from './home/home.component';
-import { ProfileComponent }        from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [{
   path: '',

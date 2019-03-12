@@ -12,21 +12,21 @@ export class SearchComponent implements OnInit {
   constructor() { }
   // what if need to disable event listeners?! In case when componente recreates many times...
   ngOnInit() {
-    $('#search').on("focus", function(event) {
-        if(!$('#search').hasClass('on')){
+    $('#search').on('focus', event => {
+        if (!$('#search').hasClass('on')) {
             $('#search').addClass('on');
         }
     });
 
-    $('#search').keyup(function(e){
+    $('#search').keyup(e => {
         $('#results').slideDown('normal');
         e.stopPropagation();
     });
 
     // make variable between those two, and not run the next one unless the results is already shown
-    $(document.body).click(function() {
+    $(document.body).click(() => {
         $('#results').hide();
-        if($('#search').hasClass('on')){
+        if ($('#search').hasClass('on')) {
             $('#search').removeClass('on');
         }
     });
@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
         }
     });*/
 
-    $('form.navbar').click(function(e) {
+    $('form.navbar').click(e => {
         e.stopPropagation();
     });
   }

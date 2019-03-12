@@ -8,7 +8,7 @@ import {
 declare var Object: any;
 export interface AnswerInterface {
   "text": string;
-  "id"?: string;
+  "id"?: any;
   "poolId"?: any;
   "authorId"?: any;
   "createdAt"?: Date;
@@ -20,7 +20,7 @@ export interface AnswerInterface {
 
 export class Answer implements AnswerInterface {
   "text": string;
-  "id": string;
+  "id": any;
   "poolId": any;
   "authorId": any;
   "createdAt": Date;
@@ -67,7 +67,7 @@ export class Answer implements AnswerInterface {
         },
         "id": {
           name: 'id',
-          type: 'string'
+          type: 'any'
         },
         "poolId": {
           name: 'poolId',

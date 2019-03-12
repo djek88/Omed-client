@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FormUtilitiesService {
-  constructor() { }
-
   showTips(controls) {
-    for (let control in controls) {
+    for (const control in controls) {
       if (controls.hasOwnProperty(control)) {
         controls[control].markAsDirty();
         controls[control].markAsTouched();
-      } 
+      }
     }
   }
 
@@ -42,7 +40,6 @@ export class FormUtilitiesService {
     } else {
       correctedDay = date.getDate();
     }
-
 
     return `${date.getFullYear()}-${correctedMonth}-${correctedDay}`;
   }

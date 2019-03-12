@@ -1,12 +1,12 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SettingsComponent }      from './settings.component';
-import { AccountComponent }       from './account/account.component';
-import { SecurityComponent }      from './security/security.component';
-import { PrivacyComponent }       from './privacy/privacy.component';
+import { SettingsComponent } from './settings.component';
+import { AccountComponent } from './account/account.component';
+import { SecurityComponent } from './security/security.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { BlockingComponent }      from './blocking/blocking.component';
+import { BlockingComponent } from './blocking/blocking.component';
 
 const routes: Routes = [
   {
