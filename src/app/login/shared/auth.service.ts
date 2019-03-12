@@ -7,7 +7,9 @@ import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../.
 import { CookieService } from 'ngx-cookie-service';
 import { switchMap, map, tap } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   redirectUrl: string;
 

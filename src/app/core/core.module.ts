@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { SDKBrowserModule } from '../shared/sdk/index';
 
 import { CookieService } from 'ngx-cookie-service';
-import { TextMasksService } from './text-masks.service';
-import { FormUtilitiesService } from './form-utilities.service';
 
 @NgModule({
   imports: [
@@ -15,8 +13,6 @@ import { FormUtilitiesService } from './form-utilities.service';
   ],
   declarations: [],
   providers: [
-    TextMasksService,
-    FormUtilitiesService,
     CookieService
   ]
 })

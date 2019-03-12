@@ -7,7 +7,9 @@ import { map, take } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NotApprovedGuard implements CanActivate, CanActivateChild {
   constructor(
     private authService: AuthService,

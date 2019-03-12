@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard, NotAuthGuard, ApprovedGuard, NotApprovedGuard } from './shared';
+import { NotAuthGuard } from './shared';
 import { LoginComponent } from './login.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -34,11 +34,5 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule],
-  providers: [
-    AuthGuard,
-    NotAuthGuard,
-    ApprovedGuard,
-    NotApprovedGuard
-  ]
 })
 export class LoginRoutingModule { }

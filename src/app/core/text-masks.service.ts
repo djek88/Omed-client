@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { CoreModule } from './core.module';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TextMasksService {
   phoneMask: Array<string|RegExp> = [/[0-0]/, /[6-7]/, ' ', /\d/, /\d/, ' ', /\d/, /\d/, ' ', /\d/, /\d/, ' ', /\d/, /\d/];
 

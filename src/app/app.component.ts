@@ -4,7 +4,7 @@ import { LoopBackConfig } from './shared/sdk/index';
 import { environment } from '../environments/environment';
 
 @Component({
-  selector: 'app-root',
+  selector: 'omed-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

@@ -1,8 +1,8 @@
-import { Component, OnInit }                  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router }   from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthService }          from '../shared';
+import { AuthService } from '../shared';
 import { FormUtilitiesService } from '../../core';
 
 @Component({
@@ -43,7 +43,7 @@ export class ChangePasswordComponent implements OnInit {
       .subscribe(() => {
         this.changedSuccessfully = true;
       }, (err) => {
-        this.router.navigate(['/login'])
+        this.router.navigate(['/login']);
       });
   }
 

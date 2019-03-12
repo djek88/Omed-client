@@ -1,6 +1,6 @@
-import { Component, OnInit }                  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router }             from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SignUpService } from '../shared/sign-up.service';
 
@@ -39,7 +39,9 @@ export class ThirdStepComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.signUpForm.invalid) return;
+    if (this.signUpForm.invalid) {
+      return;
+    }
 
     const data = {
       file: this.signUpForm.get('file').value
@@ -56,7 +58,7 @@ export class ThirdStepComponent implements OnInit {
       const file = event.target.files[0];
 
       if (this.validateFile(file)) {
-        this.signUpForm.setValue({ 'file': file });
+        this.signUpForm.setValue({ file });
       }
     }
   }
@@ -69,13 +71,20 @@ export class ThirdStepComponent implements OnInit {
 
   private validateFile(file: any) {
     const maxFileSize = this.medDocumentConfigurations.maxSize;
-    if (file.size < maxFileSize) return false;
+    if (file.size < maxFileSize) {
+      return false;
+    }
 
     const supportedTypes = [];
-    for (let key in this.medDocumentConfigurations.supportedTypes) {
-      supportedTypes.push(this.medDocumentConfigurations.supportedTypes[key]);
+    for (const key in this.medDocumentConfigurations.supportedTypes) {
+      if (this.medDocumentConfigurations.supportedTypes.hasOwnProperty(key)) {
+        supportedTypes.push(this.medDocumentConfigurations.supportedTypes[key]);
+      }
     }
-    if (supportedTypes.indexOf(file.type) === -1) return false;
+
+    if (supportedTypes.indexOf(file.type) === -1) {
+      return false;
+    }
 
     return true;
   }

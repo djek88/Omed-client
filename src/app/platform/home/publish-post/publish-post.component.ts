@@ -11,8 +11,6 @@ declare var jQuery: any;
 export class PublishPostComponent implements OnInit {
   postType = 2;
 
-  constructor() { }
-
   ngOnInit() {
     // have been commented in the initial stage
     /*$("label.cb").on('click', function() { // cb stands for Checkbox
