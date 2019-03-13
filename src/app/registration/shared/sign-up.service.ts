@@ -8,69 +8,95 @@ import { Account, MedUser, AccountApi, MedUserApi } from '../../shared/sdk';
 import { environment } from '../../../environments/environment';
 import { switchMap } from 'rxjs/operators';
 
-export interface Degree {
+export declare interface Degree {
   name: string;
   value: string;
 }
 
-export interface DegreeGroups {
+export declare interface DegreeGroups {
   name: string;
   degrees: Degree[];
 }
 
+export enum USER_TYPE {
+  STUDENT = 'student',
+  RESIDENT = 'resident',
+  DOCTOR = 'doctor',
+}
+
+export enum USER_AREA {
+  MEDICAL = 'medical',
+  DENTAL = 'dental',
+}
+
+export enum USER_GENDER {
+  MALE = 'male',
+  FEMALE = 'female',
+}
+
+const STUDENT_DEGREES: Degree[] = [
+  { name: '1 year', value: '1' },
+  { name: '2 year', value: '2' },
+  { name: '3 year', value: '3' },
+  { name: '4 year', value: '4' },
+  { name: '5 year', value: '5' },
+  { name: '6 year', value: '6' },
+  { name: '7 year', value: '7' },
+  { name: '8 year', value: '8' }
+];
+const INTERN_DEGREES: Degree[] = [
+  { name: 'Intern 1 year', value: 'intern1' },
+  { name: 'Intern 2 year', value: 'intern2' }
+];
+const RESIDENT_DEGREES: Degree[] = [
+  { name: 'Resident 1 year', value: 'resident1' },
+  { name: 'Resident 2 year', value: 'resident2' },
+  { name: 'Resident 3 year', value: 'resident3' },
+  { name: 'Resident 4 year', value: 'resident4' },
+  { name: 'Resident 5 year', value: 'resident5' }
+];
+const DOCTOR_DEGREES: Degree[] = [
+  { name: 'Generalist', value: 'generalist' },
+  { name: 'Regular', value: 'regular' }
+];
+const PROFESSOR_DEGREE: Degree[] = [
+  { name: 'Assistant', value: 'assistant' },
+  { name: 'Agrege', value: 'agrege' },
+  { name: 'E.S', value: 'es '}
+];
+const STUDENT_TYPE_DEGREE_GROUPS: DegreeGroups[] = [
+  { name: 'Student', degrees: STUDENT_DEGREES },
+  { name: 'Intern', degrees: INTERN_DEGREES }
+];
+const RESIDENT_TYPE_DEGREE_GROUPS: DegreeGroups[] = [
+  { name: 'Resident', degrees: RESIDENT_DEGREES }
+];
+const DOCTOR_TYPE_DEGREE_GROUPS: DegreeGroups[] = [
+  { name: 'Doctor', degrees: DOCTOR_DEGREES },
+  { name: 'Professor', degrees: PROFESSOR_DEGREE }
+];
+
 @Injectable()
 export class SignUpService {
-  private types: string[] = ['student', 'resident', 'doctor'];
-  private areas: string[] = ['medical', 'dental'];
-  private genders: string[] = ['male', 'female'];
+  readonly USER_TYPES = Object.values(USER_TYPE);
+  readonly AREAS = Object.values(USER_AREA);
+  readonly GENDERS = Object.values(USER_GENDER);
 
-  private studentDegrees: Degree[] = [
-    { name: '1 year', value: '1' },
-    { name: '2 year', value: '2' },
-    { name: '3 year', value: '3' },
-    { name: '4 year', value: '4' },
-    { name: '5 year', value: '5' },
-    { name: '6 year', value: '6' },
-    { name: '7 year', value: '7' },
-    { name: '8 year', value: '8' }
-  ];
-  private internDegrees: Degree[] = [
-    { name: 'Intern 1 year', value: 'intern1' },
-    { name: 'Intern 2 year', value: 'intern2'}
-  ];
-  private residentDegrees: Degree[] = [
-    { name: 'Resident 1 year', value: 'resident1'},
-    { name: 'Resident 2 year', value: 'resident2'},
-    { name: 'Resident 3 year', value: 'resident3'},
-    { name: 'Resident 4 year', value: 'resident4'},
-    { name: 'Resident 5 year', value: 'resident5'}
-  ];
-  private doctorDegrees: Degree[] = [
-    { name: 'Generalist', value: 'generalist' },
-    { name: 'Regular', value: 'regular' }
-  ];
-  private professorDegrees: Degree[] = [
-    { name: 'Assistant', value: 'assistant' },
-    { name: 'Agrege', value: 'agrege' },
-    { name: 'E.S', value: 'es '}
-  ];
+  private STUDENT_DEGREES = STUDENT_DEGREES;
+  private INTERN_DEGREES = INTERN_DEGREES;
+  private RESIDENT_DEGREES = RESIDENT_DEGREES;
+  private DOCTOR_DEGREES = DOCTOR_DEGREES;
+  private PROFESSOR_DEGREES = PROFESSOR_DEGREE;
 
-  private studentTypeDegreeGroups: DegreeGroups[] = [
-    { name: 'Student', degrees: this.studentDegrees },
-    { name: 'Intern', degrees: this.internDegrees }
-  ];
-  private residentTypeDegreeGroups: DegreeGroups[] = [
-    { name: 'Resident', degrees: this.residentDegrees }
-  ];
-  private doctorTypeDegreeGroups: DegreeGroups[] = [
-    { name: 'Doctor', degrees: this.doctorDegrees },
-    { name: 'Professor', degrees: this.professorDegrees }
-  ];
+  private STUDENT_TYPE_DEGREE_GROUPS = STUDENT_TYPE_DEGREE_GROUPS;
+  private RESIDENT_TYPE_DEGREE_GROUPS = RESIDENT_TYPE_DEGREE_GROUPS;
+  private DOCTOR_TYPE_DEGREE_GROUPS = DOCTOR_TYPE_DEGREE_GROUPS;
 
   constructor(
     private http: HttpClient,
     private accountApi: AccountApi,
-    private medUserApi: MedUserApi) {}
+    private medUserApi: MedUserApi
+  ) {}
 
   registrateFirstStep(account: Account, medUserToCreate: MedUser): Observable<Account> {
     return this.medUserApi.create(medUserToCreate).pipe(
@@ -95,38 +121,26 @@ export class SignUpService {
     );
   }
 
-  getTypes() {
-    return this.types;
-  }
-
   isDegreeOfIntern(degree: string) {
-    return this.internDegrees.map((i) => i.value).indexOf(degree) !== -1;
+    return this.INTERN_DEGREES.map((i) => i.value).indexOf(degree) !== -1;
   }
 
   isDegreeOfRegular(degree: string) {
-    return this.doctorDegrees[1].value === degree;
+    return this.DOCTOR_DEGREES[1].value === degree;
   }
 
   isDegreeOfProfessor(degree: string) {
-    return this.professorDegrees.map((i) => i.value).indexOf(degree) !== -1;
-  }
-
-  getAreas() {
-    return this.areas;
-  }
-
-  getGenders() {
-    return this.genders;
+    return this.PROFESSOR_DEGREES.map((i) => i.value).indexOf(degree) !== -1;
   }
 
   getDefaultDegreeFor(userType: string) {
     switch (userType) {
-      case this.types[0]:
-        return this.studentDegrees[0].value;
-      case this.types[1]:
-        return this.residentDegrees[0].value;
-      case this.types[2]:
-        return this.doctorDegrees[0].value;
+      case USER_TYPE.STUDENT:
+        return this.STUDENT_DEGREES[0].value;
+      case USER_TYPE.RESIDENT:
+        return this.RESIDENT_DEGREES[0].value;
+      case USER_TYPE.DOCTOR:
+        return this.DOCTOR_DEGREES[0].value;
     }
   }
 
@@ -134,27 +148,27 @@ export class SignUpService {
     const userType = this.getUserType(user);
 
     switch (userType) {
-      case this.types[0]:
-        return this.studentTypeDegreeGroups;
-      case this.types[1]:
-        return this.residentTypeDegreeGroups;
-      case this.types[2]:
-        return this.doctorTypeDegreeGroups;
+      case USER_TYPE.STUDENT:
+        return this.STUDENT_TYPE_DEGREE_GROUPS;
+      case USER_TYPE.RESIDENT:
+        return this.RESIDENT_TYPE_DEGREE_GROUPS;
+      case USER_TYPE.DOCTOR:
+        return this.DOCTOR_TYPE_DEGREE_GROUPS;
     }
   }
 
   getUserType(user: MedUser) {
-    const residentDegrees = this.getDegreesValues(this.residentDegrees);
-    const isStudent = user.type === this.types[0];
+    const residentDegrees = this.getDegreesValues(this.RESIDENT_DEGREES);
+    const isStudent = user.type === USER_TYPE.STUDENT;
     const isResident = isStudent && residentDegrees.indexOf(user.degree) !== -1;
-    const isDoctor = user.type === this.types[2];
+    const isDoctor = user.type === USER_TYPE.DOCTOR;
 
     if (isResident) {
-      return this.types[1];
+      return USER_TYPE.RESIDENT;
     } else if (isStudent) {
-      return this.types[0];
+      return USER_TYPE.STUDENT;
     } else if (isDoctor) {
-      return this.types[2];
+      return USER_TYPE.DOCTOR;
     }
   }
 

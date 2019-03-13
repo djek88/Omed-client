@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '../shared';
 import { FormUtilitiesService } from '../../core';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'omed-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent {
   changePasswordForm: FormGroup;
 
   formSubmitted = false;
@@ -26,9 +27,6 @@ export class ChangePasswordComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit() {
-  }
-
   onSubmit() {
     if (this.changePasswordForm.invalid) {
       return this.formUtils.showTips(this.changePasswordForm.controls);
@@ -40,11 +38,10 @@ export class ChangePasswordComponent implements OnInit {
     const accessTokenId = this.route.snapshot.paramMap.get('accessToken');
 
     this.authService.setPassword(newPassword, accessTokenId)
-      .subscribe(() => {
-        this.changedSuccessfully = true;
-      }, (err) => {
-        this.router.navigate(['/login']);
-      });
+      .subscribe(
+        () => this.changedSuccessfully = true,
+        (err) => this.router.navigate(['/login'])
+      );
   }
 
   private createForm() {

@@ -105,9 +105,8 @@ export class AuthService {
   }
 
   getCurrentUserData(): Observable<Account> {
-    return this.accountApi.getCurrent({include: 'user'})
-      .pipe(
-        tap((account => this.auth.setUser(account)))
-      );
+    return this.accountApi.getCurrent({include: 'user'}).pipe(
+      tap((account => this.auth.setUser(account)))
+    );
   }
 }

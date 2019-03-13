@@ -14,12 +14,7 @@
           <div class="upload-area" (click)="file.click();">
             <img src="/assets/icons/stid.svg" style="width: 60px;">
             <div class="det">
-              Click here to upload a picture of your
-              <ng-container [ngSwitch]="userType">
-                <strong *ngSwitchCase="userTypes[0]">student card</strong>
-                <strong *ngSwitchCase="userTypes[1]">badge/diploma/stamp</strong>
-                <strong *ngSwitchCase="userTypes[2]">diploma/stamp</strong>
-              </ng-container>
+              Click here to upload a picture of your <strong>{{documentTypeName}}</strong>
             </div>
             <input type="file" class="form-control-file" (change)="onFileChange($event)" #file>
           </div>

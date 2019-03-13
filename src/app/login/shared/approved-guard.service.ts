@@ -14,7 +14,7 @@ export class ApprovedGuard implements CanActivate, CanActivateChild {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.checkApproval();

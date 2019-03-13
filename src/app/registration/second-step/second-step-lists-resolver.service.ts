@@ -7,11 +7,11 @@ import { map } from 'rxjs/operators';
 import { City, Specialty, University, Hospital,
          CityApi, SpecialtyApi, UniversityApi, HospitalApi } from '../../shared/sdk';
 
-export interface Lists {
-  cities: [City];
-  specialties: [Specialty];
-  universities: [University];
-  hospitals: [Hospital];
+export declare interface Lists {
+  cities: City[];
+  specialties: Specialty[];
+  universities: University[];
+  hospitals: Hospital[];
 }
 
 @Injectable()

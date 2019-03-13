@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'omed-login',
@@ -6,9 +6,5 @@ import { Component, ViewEncapsulation, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
-
-  ngOnInit() {
-  }
-
+export class LoginComponent {
 }

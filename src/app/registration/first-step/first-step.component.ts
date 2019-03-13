@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Account, MedUser } from '../../shared/sdk';
 import { AuthService } from '../../login';
-import { SignUpService } from '../shared/sign-up.service';
+import { SignUpService, USER_TYPE } from '../shared/sign-up.service';
 import { TextMasksService } from '../../core';
 import { switchMap } from 'rxjs/operators';
 
@@ -15,8 +15,8 @@ import { switchMap } from 'rxjs/operators';
 })
 export class FirstStepComponent implements OnInit {
   signUpForm: FormGroup;
-  types: string[];
-  areas: string[];
+  userTypeOpts: string[];
+  areaOpts: string[];
 
   formSubmitted = false;
 
@@ -28,13 +28,13 @@ export class FirstStepComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.types = this.signUpService.getTypes();
-    this.areas = this.signUpService.getAreas();
+    this.userTypeOpts = this.signUpService.USER_TYPES;
+    this.areaOpts = this.signUpService.AREAS;
 
     this.createForm();
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onSubmit() {
     if (this.signUpForm.invalid) {
@@ -59,9 +59,8 @@ export class FirstStepComponent implements OnInit {
     let medUserType = formModel.type;
     const medUserDegree = this.signUpService.getDefaultDegreeFor(medUserType);
 
-    // if selected "Resident"
-    if (medUserType === this.types[1]) {
-      medUserType = this.types[0]; // set student type
+    if (medUserType === USER_TYPE.RESIDENT) {
+      medUserType = USER_TYPE.STUDENT;
     }
 
     return new MedUser({

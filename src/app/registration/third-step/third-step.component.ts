@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SignUpService } from '../shared/sign-up.service';
+import { SignUpService, USER_TYPE } from '../shared/sign-up.service';
 
 import { MedUser } from '../../shared/sdk';
 
@@ -13,8 +13,7 @@ import { MedUser } from '../../shared/sdk';
 })
 export class ThirdStepComponent implements OnInit {
   signUpForm: FormGroup;
-  userTypes: string[];
-  userType: string;
+  documentTypeName: string;
 
   private medUser: MedUser;
   private medDocumentConfigurations: any;
@@ -26,15 +25,26 @@ export class ThirdStepComponent implements OnInit {
     private router: Router
   ) {
     this.createForm();
-    this.userTypes = this.signUpService.getTypes();
   }
 
   ngOnInit() {
     this.route.data
-      .subscribe((data: { medUser: MedUser, medDocumentConfigurations: any }) => {
+      .subscribe((data: {medUser: MedUser, medDocumentConfigurations: any}) => {
         this.medUser = data.medUser;
-        this.userType = this.signUpService.getUserType(this.medUser);
         this.medDocumentConfigurations = data.medDocumentConfigurations;
+
+        const userType = this.signUpService.getUserType(this.medUser);
+        switch (userType) {
+          case USER_TYPE.STUDENT:
+            this.documentTypeName = 'student card';
+            break;
+          case USER_TYPE.RESIDENT:
+            this.documentTypeName = 'badge/diploma/stamp';
+            break;
+          case USER_TYPE.DOCTOR:
+            this.documentTypeName = 'diploma/stamp';
+            break;
+        }
       });
   }
 

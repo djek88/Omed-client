@@ -26,4 +26,4 @@ import { SignUpService } from './shared/sign-up.service';
     SignUpService
   ]
 })
-export class RegistrationModule { }
+export class RegistrationModule {}

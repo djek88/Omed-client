@@ -33,5 +33,4 @@ export class NotAuthGuard implements CanActivate, CanActivateChild, CanLoad {
     this.router.navigate(['/home']);
     return false;
   }
-
 }
