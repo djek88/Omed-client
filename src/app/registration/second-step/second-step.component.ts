@@ -23,7 +23,6 @@ export class SecondStepComponent implements OnInit {
   universityOpts: University[];
   hospitalOpts: Hospital[];
   degreeGroups: DegreeGroups[];
-
   formSubmitted = false;
 
   private medUser: MedUser;
@@ -40,7 +39,7 @@ export class SecondStepComponent implements OnInit {
     this.maxDate = this.formUtils.dateToString(-18);
     this.genderOpts = this.signUpService.GENDERS;
 
-    this.createForm();
+    this.initializeFrom();
   }
 
   ngOnInit() {
@@ -70,6 +69,22 @@ export class SecondStepComponent implements OnInit {
       .subscribe(() => {
         this.router.navigate(['step-3'], { relativeTo: this.route.parent });
       });
+  }
+
+  private initializeFrom() {
+    this.signUpForm = this.fb.group({
+      birthday: ['', Validators.required],
+      sex: ['', Validators.required],
+      city: ['', Validators.required],
+      degree: ['', Validators.required],
+      university: '',
+      hospital: '',
+      specialty: '',
+      military: false
+    });
+
+    this.signUpForm.controls.degree.valueChanges.subscribe(this.configureControlsByDegree.bind(this));
+    this.configureControlsByDegree();
   }
 
   private prepareMedUserData() {
@@ -105,22 +120,6 @@ export class SecondStepComponent implements OnInit {
     }
 
     return data;
-  }
-
-  private createForm() {
-    this.signUpForm = this.fb.group({
-      birthday: ['', Validators.required],
-      sex: ['', Validators.required],
-      city: ['', Validators.required],
-      degree: ['', Validators.required],
-      university: '',
-      hospital: '',
-      specialty: '',
-      military: false
-    });
-
-    this.signUpForm.controls.degree.valueChanges.subscribe(this.configureControlsByDegree.bind(this));
-    this.configureControlsByDegree();
   }
 
   private configureControlsByDegree(degree?: string) {
@@ -186,10 +185,10 @@ export class SecondStepComponent implements OnInit {
     this.hospitalOpts.push({ id: 'public', name: 'Other public hospital' } as Hospital);
   }
 
-  private setAsRequiredControl(control: AbstractControl) {
-    control.enable();
-    control.setValidators(Validators.required);
-    control.updateValueAndValidity();
+  private setAsRequiredControl(ctrl: AbstractControl) {
+    ctrl.enable();
+    ctrl.setValidators(Validators.required);
+    ctrl.updateValueAndValidity();
   }
 
   private resetDisableControls() {

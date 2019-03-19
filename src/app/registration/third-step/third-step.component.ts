@@ -24,7 +24,7 @@ export class ThirdStepComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.createForm();
+    this.initializeForm();
   }
 
   ngOnInit() {
@@ -73,7 +73,7 @@ export class ThirdStepComponent implements OnInit {
     }
   }
 
-  private createForm() {
+  private initializeForm() {
     this.signUpForm = this.fb.group({
       file: [null, Validators.required]
     });

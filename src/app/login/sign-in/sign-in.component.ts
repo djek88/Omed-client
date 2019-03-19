@@ -11,7 +11,6 @@ import { FormUtilitiesService } from '../../core';
 })
 export class SignInComponent implements OnInit {
   signInForm: FormGroup;
-
   formSubmitted = false;
 
   constructor(
@@ -19,7 +18,7 @@ export class SignInComponent implements OnInit {
     private authService: AuthService,
     private formUtils: FormUtilitiesService
   ) {
-    this.createForm();
+    this.initializeForm();
   }
 
   ngOnInit() {
@@ -41,7 +40,7 @@ export class SignInComponent implements OnInit {
       .subscribe(() => this.authService.afterLoginRedirect());
   }
 
-  private createForm() {
+  private initializeForm() {
     this.signInForm = this.fb.group({
       email: ['', Validators.compose([
         Validators.email,

@@ -7,6 +7,7 @@ import { AuthService } from '../../login';
 import { SignUpService, USER_TYPE } from '../shared/sign-up.service';
 import { TextMasksService } from '../../core';
 import { switchMap } from 'rxjs/operators';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'omed-first-step',
@@ -31,7 +32,7 @@ export class FirstStepComponent implements OnInit {
     this.userTypeOpts = this.signUpService.USER_TYPES;
     this.areaOpts = this.signUpService.AREAS;
 
-    this.createForm();
+    this.initializeForm();
   }
 
   ngOnInit() {}
@@ -69,7 +70,7 @@ export class FirstStepComponent implements OnInit {
       area: formModel.area,
       firstName: formModel.firstName,
       lastName: formModel.lastName,
-      phones: [formModel.phone],
+      phones: [this.textMasks.unmask(formModel.phone)],
     });
   }
 
@@ -91,31 +92,27 @@ export class FirstStepComponent implements OnInit {
     }
   }
 
-  private createForm() {
+  private initializeForm() {
     this.signUpForm = this.fb.group({
       type: ['', Validators.required],
       area: ['', Validators.required],
-      firstName: ['', Validators.compose([
+      firstName: ['', [
         Validators.pattern('[a-zA-Z]{2,30}'),
         Validators.required
-      ])],
-      lastName: ['', Validators.compose([
+      ]],
+      lastName: ['', [
         Validators.pattern('[a-zA-Z]{2,30}'),
         Validators.required
-      ])],
-      email: ['', Validators.compose([
+      ]],
+      email: ['', [
         Validators.email,
         Validators.required
-      ])],
-      phone: ['', Validators.compose([
-        Validators.pattern(this.textMasks.phoneMaskRegExp),
-        Validators.required
-      ])],
+      ]],
+      phone: ['', [
+        Validators.required,
+        Validators.pattern(this.textMasks.phoneMaskRegExp)
+      ]],
       password: ['', Validators.required]
-    });
-
-    this.signUpForm.valueChanges.subscribe(formModel => {
-      formModel.phone = this.textMasks.unmask(formModel.phone);
     });
   }
 }

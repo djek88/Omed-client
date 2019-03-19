@@ -11,7 +11,6 @@ import { FormUtilitiesService } from '../../core';
 })
 export class HomeComponent implements OnInit {
   signInForm: FormGroup;
-
   formSubmitted = false;
   lastSignedInCredentials: any;
   shortLanding: boolean;
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private formUtils: FormUtilitiesService
   ) {
-    this.createForm();
+    this.initializeForm();
   }
 
   ngOnInit() {
@@ -60,12 +59,9 @@ export class HomeComponent implements OnInit {
     this.authService.deleteLastSignedInUserData();
   }
 
-  private createForm() {
+  private initializeForm() {
     this.signInForm = this.fb.group({
-      email: ['', Validators.compose([
-        Validators.email,
-        Validators.required
-      ])],
+      email: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required],
       rememberMe: false
     });
