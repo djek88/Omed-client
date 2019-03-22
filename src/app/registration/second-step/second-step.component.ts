@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Lists } from './second-step-lists-resolver.service';
-import { SignUpService, DegreeGroups, USER_TYPE } from '../shared/sign-up.service';
+import { SignUpService, DegreeGroups, UserType } from '../shared/sign-up.service';
 import { FormUtilitiesService } from '../../core';
 
 import { MedUser, City, Specialty, University, Hospital } from '../../shared/sdk';
@@ -37,7 +37,7 @@ export class SecondStepComponent implements OnInit {
   ) {
     this.minDate = this.formUtils.dateToString(-90);
     this.maxDate = this.formUtils.dateToString(-18);
-    this.genderOpts = this.signUpService.GENDERS;
+    this.genderOpts = this.signUpService.genders;
 
     this.initializeFrom();
   }
@@ -131,13 +131,13 @@ export class SecondStepComponent implements OnInit {
 
     const userType = this.signUpService.getUserType(this.medUser);
     switch (userType) {
-      case USER_TYPE.STUDENT:
+      case UserType.STUDENT:
         this.configureControlsForStudent();
         break;
-      case USER_TYPE.RESIDENT:
+      case UserType.RESIDENT:
         this.configureControlsForResident();
         break;
-      case USER_TYPE.DOCTOR:
+      case UserType.DOCTOR:
         this.configureControlsForDoctor();
         break;
     }

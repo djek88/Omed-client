@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Account, MedUser, AccountApi, MedUserApi } from '../../shared/sdk';
+import { Account, MedUser, MedUserApi } from '../../shared/sdk';
 
 import { environment } from '../../../environments/environment';
 import { switchMap } from 'rxjs/operators';
@@ -18,23 +18,23 @@ export declare interface DegreeGroups {
   degrees: Degree[];
 }
 
-export enum USER_TYPE {
+export enum UserType {
   STUDENT = 'student',
   RESIDENT = 'resident',
   DOCTOR = 'doctor',
 }
 
-export enum USER_AREA {
+export enum UserArea {
   MEDICAL = 'medical',
   DENTAL = 'dental',
 }
 
-export enum USER_GENDER {
+export enum UserGender {
   MALE = 'male',
   FEMALE = 'female',
 }
 
-const STUDENT_DEGREES: Degree[] = [
+const studentDegrees: Degree[] = [
   { name: '1 year', value: '1' },
   { name: '2 year', value: '2' },
   { name: '3 year', value: '3' },
@@ -44,58 +44,57 @@ const STUDENT_DEGREES: Degree[] = [
   { name: '7 year', value: '7' },
   { name: '8 year', value: '8' }
 ];
-const INTERN_DEGREES: Degree[] = [
+const internDegrees: Degree[] = [
   { name: 'Intern 1 year', value: 'intern1' },
   { name: 'Intern 2 year', value: 'intern2' }
 ];
-const RESIDENT_DEGREES: Degree[] = [
+const residentDegrees: Degree[] = [
   { name: 'Resident 1 year', value: 'resident1' },
   { name: 'Resident 2 year', value: 'resident2' },
   { name: 'Resident 3 year', value: 'resident3' },
   { name: 'Resident 4 year', value: 'resident4' },
   { name: 'Resident 5 year', value: 'resident5' }
 ];
-const DOCTOR_DEGREES: Degree[] = [
+const doctorDegrees: Degree[] = [
   { name: 'Generalist', value: 'generalist' },
   { name: 'Regular', value: 'regular' }
 ];
-const PROFESSOR_DEGREE: Degree[] = [
+const professorDegrees: Degree[] = [
   { name: 'Assistant', value: 'assistant' },
   { name: 'Agrege', value: 'agrege' },
   { name: 'E.S', value: 'es '}
 ];
-const STUDENT_TYPE_DEGREE_GROUPS: DegreeGroups[] = [
-  { name: 'Student', degrees: STUDENT_DEGREES },
-  { name: 'Intern', degrees: INTERN_DEGREES }
+const studentTypeDegreeGroups: DegreeGroups[] = [
+  { name: 'Student', degrees: studentDegrees },
+  { name: 'Intern', degrees: internDegrees }
 ];
-const RESIDENT_TYPE_DEGREE_GROUPS: DegreeGroups[] = [
-  { name: 'Resident', degrees: RESIDENT_DEGREES }
+const residentTypeDegreeGroups: DegreeGroups[] = [
+  { name: 'Resident', degrees: residentDegrees }
 ];
-const DOCTOR_TYPE_DEGREE_GROUPS: DegreeGroups[] = [
-  { name: 'Doctor', degrees: DOCTOR_DEGREES },
-  { name: 'Professor', degrees: PROFESSOR_DEGREE }
+const doctorTypeDegreeGroups: DegreeGroups[] = [
+  { name: 'Doctor', degrees: doctorDegrees },
+  { name: 'Professor', degrees: professorDegrees }
 ];
 
 @Injectable()
 export class SignUpService {
-  readonly USER_TYPES = Object.values(USER_TYPE);
-  readonly AREAS = Object.values(USER_AREA);
-  readonly GENDERS = Object.values(USER_GENDER);
+  readonly userTypes = Object.values(UserType);
+  readonly areas = Object.values(UserArea);
+  readonly genders = Object.values(UserGender);
 
-  private STUDENT_DEGREES = STUDENT_DEGREES;
-  private INTERN_DEGREES = INTERN_DEGREES;
-  private RESIDENT_DEGREES = RESIDENT_DEGREES;
-  private DOCTOR_DEGREES = DOCTOR_DEGREES;
-  private PROFESSOR_DEGREES = PROFESSOR_DEGREE;
+  private studentDegrees = studentDegrees;
+  private internDegrees = internDegrees;
+  private residentDegrees = residentDegrees;
+  private doctorDegrees = doctorDegrees;
+  private professorDegrees = professorDegrees;
 
-  private STUDENT_TYPE_DEGREE_GROUPS = STUDENT_TYPE_DEGREE_GROUPS;
-  private RESIDENT_TYPE_DEGREE_GROUPS = RESIDENT_TYPE_DEGREE_GROUPS;
-  private DOCTOR_TYPE_DEGREE_GROUPS = DOCTOR_TYPE_DEGREE_GROUPS;
+  private studentTypeDegreeGroups = studentTypeDegreeGroups;
+  private residentTypeDegreeGroups = residentTypeDegreeGroups;
+  private doctorTypeDegreeGroups = doctorTypeDegreeGroups;
 
   constructor(
     private http: HttpClient,
-    private accountApi: AccountApi,
-    private medUserApi: MedUserApi
+    private medUserApi: MedUserApi,
   ) {}
 
   registrateFirstStep(account: Account, medUserToCreate: MedUser): Observable<Account> {
@@ -122,25 +121,25 @@ export class SignUpService {
   }
 
   isDegreeOfIntern(degree: string) {
-    return this.INTERN_DEGREES.map((i) => i.value).indexOf(degree) !== -1;
+    return this.internDegrees.map((i) => i.value).indexOf(degree) !== -1;
   }
 
   isDegreeOfRegular(degree: string) {
-    return this.DOCTOR_DEGREES[1].value === degree;
+    return this.doctorDegrees[1].value === degree;
   }
 
   isDegreeOfProfessor(degree: string) {
-    return this.PROFESSOR_DEGREES.map((i) => i.value).indexOf(degree) !== -1;
+    return this.professorDegrees.map((i) => i.value).indexOf(degree) !== -1;
   }
 
   getDefaultDegreeFor(userType: string) {
     switch (userType) {
-      case USER_TYPE.STUDENT:
-        return this.STUDENT_DEGREES[0].value;
-      case USER_TYPE.RESIDENT:
-        return this.RESIDENT_DEGREES[0].value;
-      case USER_TYPE.DOCTOR:
-        return this.DOCTOR_DEGREES[0].value;
+      case UserType.STUDENT:
+        return this.studentDegrees[0].value;
+      case UserType.RESIDENT:
+        return this.residentDegrees[0].value;
+      case UserType.DOCTOR:
+        return this.doctorDegrees[0].value;
     }
   }
 
@@ -148,27 +147,27 @@ export class SignUpService {
     const userType = this.getUserType(user);
 
     switch (userType) {
-      case USER_TYPE.STUDENT:
-        return this.STUDENT_TYPE_DEGREE_GROUPS;
-      case USER_TYPE.RESIDENT:
-        return this.RESIDENT_TYPE_DEGREE_GROUPS;
-      case USER_TYPE.DOCTOR:
-        return this.DOCTOR_TYPE_DEGREE_GROUPS;
+      case UserType.STUDENT:
+        return this.studentTypeDegreeGroups;
+      case UserType.RESIDENT:
+        return this.residentTypeDegreeGroups;
+      case UserType.DOCTOR:
+        return this.doctorTypeDegreeGroups;
     }
   }
 
   getUserType(user: MedUser) {
-    const residentDegrees = this.getDegreesValues(this.RESIDENT_DEGREES);
-    const isStudent = user.type === USER_TYPE.STUDENT;
-    const isResident = isStudent && residentDegrees.indexOf(user.degree) !== -1;
-    const isDoctor = user.type === USER_TYPE.DOCTOR;
+    const residentDegreesValues = this.getDegreesValues(this.residentDegrees);
+    const isStudent = user.type === UserType.STUDENT;
+    const isResident = isStudent && residentDegreesValues.indexOf(user.degree) !== -1;
+    const isDoctor = user.type === UserType.DOCTOR;
 
     if (isResident) {
-      return USER_TYPE.RESIDENT;
+      return UserType.RESIDENT;
     } else if (isStudent) {
-      return USER_TYPE.STUDENT;
+      return UserType.STUDENT;
     } else if (isDoctor) {
-      return USER_TYPE.DOCTOR;
+      return UserType.DOCTOR;
     }
   }
 

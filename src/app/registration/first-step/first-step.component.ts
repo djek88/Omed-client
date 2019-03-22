@@ -4,10 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Account, MedUser } from '../../shared/sdk';
 import { AuthService } from '../../login';
-import { SignUpService, USER_TYPE } from '../shared/sign-up.service';
+import { SignUpService, UserType } from '../shared/sign-up.service';
 import { TextMasksService } from '../../core';
 import { switchMap } from 'rxjs/operators';
-import { interval } from 'rxjs';
 
 @Component({
   selector: 'omed-first-step',
@@ -29,8 +28,8 @@ export class FirstStepComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.userTypeOpts = this.signUpService.USER_TYPES;
-    this.areaOpts = this.signUpService.AREAS;
+    this.userTypeOpts = this.signUpService.userTypes;
+    this.areaOpts = this.signUpService.areas;
 
     this.initializeForm();
   }
@@ -60,8 +59,8 @@ export class FirstStepComponent implements OnInit {
     let medUserType = formModel.type;
     const medUserDegree = this.signUpService.getDefaultDegreeFor(medUserType);
 
-    if (medUserType === USER_TYPE.RESIDENT) {
-      medUserType = USER_TYPE.STUDENT;
+    if (medUserType === UserType.RESIDENT) {
+      medUserType = UserType.STUDENT;
     }
 
     return new MedUser({

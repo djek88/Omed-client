@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SignUpService, USER_TYPE } from '../shared/sign-up.service';
+import { SignUpService, UserType } from '../shared/sign-up.service';
 
 import { MedUser } from '../../shared/sdk';
 
@@ -35,13 +35,13 @@ export class ThirdStepComponent implements OnInit {
 
         const userType = this.signUpService.getUserType(this.medUser);
         switch (userType) {
-          case USER_TYPE.STUDENT:
+          case UserType.STUDENT:
             this.documentTypeName = 'student card';
             break;
-          case USER_TYPE.RESIDENT:
+          case UserType.RESIDENT:
             this.documentTypeName = 'badge/diploma/stamp';
             break;
-          case USER_TYPE.DOCTOR:
+          case UserType.DOCTOR:
             this.documentTypeName = 'diploma/stamp';
             break;
         }
