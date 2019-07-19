@@ -29,12 +29,12 @@ export class SecondStepListsResolver implements Resolve<Lists> {
       this.universityApi.find(),
       this.hospitalApi.find(),
     ).pipe(
-      map((results) => {
+      map(([cities, specialties, universities, hospitals]) => {
         return {
-          cities: results[0],
-          specialties: results[1],
-          universities: results[2],
-          hospitals: results[3]
+          cities,
+          specialties,
+          universities,
+          hospitals
         } as Lists;
       })
     );

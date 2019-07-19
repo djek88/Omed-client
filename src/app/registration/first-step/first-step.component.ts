@@ -17,7 +17,6 @@ export class FirstStepComponent implements OnInit {
   signUpForm: FormGroup;
   userTypeOpts: string[];
   areaOpts: string[];
-
   formSubmitted = false;
 
   constructor(
