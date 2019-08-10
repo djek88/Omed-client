@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { SignUpService, UserType } from '../shared/sign-up.service';
 
-import { MedUser } from '../../shared/sdk';
+import { MedUser } from '../../core/sdk';
 
 @Component({
   selector: 'omed-third-step',

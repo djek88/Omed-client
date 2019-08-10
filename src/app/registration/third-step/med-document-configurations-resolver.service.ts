@@ -3,7 +3,7 @@ import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/r
 
 import { Observable } from 'rxjs';
 
-import { AdditionalApi } from '../../shared/sdk';
+import { AdditionalApi } from '../../core/sdk';
 
 @Injectable()
 export class MedDocumentConfigurationsResolver implements Resolve<any> {

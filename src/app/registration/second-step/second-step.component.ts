@@ -6,7 +6,7 @@ import { Lists } from './second-step-lists-resolver.service';
 import { SignUpService, DegreeGroups, UserType } from '../shared/sign-up.service';
 import { FormUtilitiesService } from '../../core';
 
-import { MedUser, City, Specialty, University, Hospital } from '../../shared/sdk';
+import { MedUser, City, Specialty, University, Hospital } from '../../core/sdk';
 
 @Component({
   selector: 'omed-second-step',

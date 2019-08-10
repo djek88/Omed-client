@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LoopBackConfig } from './shared/sdk/index';
+import { LoopBackConfig } from './core/sdk';
 import { environment } from '../environments/environment';
 
 @Component({

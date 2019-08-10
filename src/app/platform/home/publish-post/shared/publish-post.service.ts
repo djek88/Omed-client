@@ -5,7 +5,7 @@ import { Observable, forkJoin, EMPTY } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { AuthService } from '../../../../login';
-import { Post, Discussion, MedCase, MedUserApi, PostApi, DiscussionApi, MedCaseApi, PoolApi } from '../../../../shared/sdk';
+import { Post, Discussion, MedCase, MedUserApi, PostApi, DiscussionApi, MedCaseApi, PoolApi } from '../../../../core/sdk';
 
 import { environment } from '../../../../../environments/environment';
 

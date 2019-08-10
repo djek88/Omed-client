@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Account, MedUser, MedUserApi } from '../../shared/sdk';
+import { Account, MedUser, MedUserApi } from '../../core/sdk';
 
 import { environment } from '../../../environments/environment';
 import { switchMap } from 'rxjs/operators';

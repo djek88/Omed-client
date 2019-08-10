@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Account, MedUser } from '../../shared/sdk';
+import { Account, MedUser } from '../../core/sdk';
 import { AuthService } from '../../login';
 import { SignUpService, UserType } from '../shared/sign-up.service';
 import { TextMasksService } from '../../core';

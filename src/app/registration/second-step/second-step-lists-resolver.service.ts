@@ -5,7 +5,7 @@ import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { City, Specialty, University, Hospital,
-         CityApi, SpecialtyApi, UniversityApi, HospitalApi } from '../../shared/sdk';
+         CityApi, SpecialtyApi, UniversityApi, HospitalApi } from '../../core/sdk';
 
 export declare interface Lists {
   cities: City[];

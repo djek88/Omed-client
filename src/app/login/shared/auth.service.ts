@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../../shared/sdk';
+import { LoopBackConfig, LoopBackAuth, AccountApi, Account, MedUser } from '../../core/sdk';
 import { CookieService } from 'ngx-cookie-service';
 import { switchMap, map, tap } from 'rxjs/operators';
 

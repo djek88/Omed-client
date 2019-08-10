@@ -3,7 +3,7 @@ import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/r
 
 import { Observable } from 'rxjs';
 
-import { MedUser } from '../../shared/sdk';
+import { MedUser } from '../../core/sdk';
 import { AuthService } from '../../login';
 
 @Injectable()

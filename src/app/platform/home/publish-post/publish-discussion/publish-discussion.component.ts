@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { PublishPostService } from '../shared/publish-post.service';
 
-import { AdditionalApi } from '../../../../shared/sdk';
+import { AdditionalApi } from '../../../../core/sdk';
 
 @Component({
   selector: 'omed-publish-discussion',

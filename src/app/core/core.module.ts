@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SDKBrowserModule } from '../shared/sdk/index';
+import { SDKBrowserModule } from './sdk';
 
 import { CookieService } from 'ngx-cookie-service';
 

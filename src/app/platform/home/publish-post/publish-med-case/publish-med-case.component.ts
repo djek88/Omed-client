@@ -7,7 +7,7 @@ import { forkJoin } from 'rxjs';
 import { PublishPostService } from '../shared/publish-post.service';
 
 import { MedCase, Specialty,
-  AdditionalApi, SpecialtyApi } from '../../../../shared/sdk';
+  AdditionalApi, SpecialtyApi } from '../../../../core/sdk';
 
 declare var $: any;
 declare var jQuery: any;
