@@ -22,6 +22,7 @@ const routes: Routes = [{
       path: '',
       component: PlatformLayoutComponent,
       children: [
+        { path: '',  pathMatch: 'full', redirectTo: 'home' },
         {
           path: 'home',
           component: HomeComponent
@@ -30,7 +31,7 @@ const routes: Routes = [{
           path: ':username',
           component: ProfileComponent
         },
-        { path: '', redirectTo: 'home' }
+        { path: '**', pathMatch: 'full', redirectTo: 'home' }
       ]
     }
   ]

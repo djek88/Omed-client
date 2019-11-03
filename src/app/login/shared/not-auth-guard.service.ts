@@ -11,7 +11,10 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class NotAuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   canLoad(route: Route): boolean {
     return this.checkIsNotLogin();
